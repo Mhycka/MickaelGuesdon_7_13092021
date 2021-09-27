@@ -4,84 +4,114 @@
 <head>
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Les petis plats</title>
-    <link rel="icon" type="image/png"
-        href="Media/Vector.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    <title>Les petis plats</title>
+    <link rel="icon" type="image/png" href="Media/Vector.png" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.1/css/all.css'>
     <link rel='stylesheet' href='./css/style.css'>
 </head>
 
 <body>
     <!-- HEADER-->
-    <header id= "logo">
-        <img src="Media/Vector.png" alt="Les petits plats" />
-        <img src="Media/Les petits plats.png" alt="Les petits plats"/>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <img src="./Media/logo.png" width="300" alt = "Site logo" class="d-block mx-auto">
+            </div>
+        </div>
+        
         <!-- SEARCH BAR-->
-        <form id='searchBar'>
-            <label for="searchBarInput"></label>
-            <input type="search" id="searchBarInput"
-                placeholder="Rechercher un ingrédient, appareil, ustensile ou une recette"
-                aria-label="Search through site content">
-            <i class="fas fa-search"></i>
-        </form>
-
-        <!-- Badges added dynamically: -->
-        <nav id="tagsBadges">
-            <span id="ingredientTag"></span>
-            <span id="appareilTag"></span>
-            <span id="ustensileTag"></span>
-        </nav>
-
-        <!-- FILTER -->
-        <div id="filter">
-            <div id="ingredients">
-                <button>Ingrédients <i class="fas fa-chevron-down" id='openIngredientsFilter'></i></button>
-                <div id='hiddenIngredientsFilter'>
-                    <label for="inputIngredients"></label>
-                    <input type="search" id="inputIngredients" aria-label="Search through ingredients"
-                        placeholder="Rechercher un ingrédient">
-                    <i class="fas fa-chevron-up" id="closeIngredientsFilter"></i>
-                    <div id='ingredientsExample'></div>
+        <div class="row">
+            <div class="col-12">
+                <form id='searchBar'>
+                    <label for="searchBarInput"></label>
+                    <input type="search" id="searchBarInput"
+                        placeholder="Rechercher un ingrédient, appareil, ustensile ou une recette"
+                        aria-label="Search through site content">
+                    <i class="fas fa-search"></i>
+                </form>
+            </div>
+        </div>
+            
+            <!-- Badges added dynamically: -->
+        <div class="row">
+            <div class="col">
+                <nav id="tagsBadges">
+                    <span id="ingredientTag"></span>
+                    <span id="appareilTag"></span>
+                    <span id="ustensileTag"></span>
+                </nav>
+            </div>
+        </div>  
+          
+            <!-- FILTER -->
+        <div class="row" id="filter">
+            <div class="col-2">
+                <div id="ingredients">
+                    <button>Ingrédients <i class="fas fa-chevron-down" id='openIngredientsFilter'></i></button>
+                    <div id='ingredientsHide'>
+                        <label for="inputIngredients"></label>
+                        <input type="search" id="inputIngredients" aria-label="Search through ingredients"
+                            placeholder="Rechercher un ingrédient">
+                        <i class="fas fa-chevron-up" id="closeIngredientsFilter"></i>
+                        <div id='ingredientsExample'></div>
+                    </div>
                 </div>
             </div>
 
-            <div id="appareil">
-                <button>Appareil <i class="fas fa-chevron-down" id='openAppareilFilter'></i></button>
-                <div id='hiddenAppareilFilter'>
-                    <label for="inputAppareil"></label>
-                    <input type="search" id="inputAppareil" aria-label="Search through appareil"
-                        placeholder="Rechercher un appareil">
-                    <i class="fas fa-chevron-up" id="closeAppareilFilter"></i>
-                    <div id='appareilExample'></div>
+            <div class="col-2">
+                <div id="appareil">
+                    <button>Appareil <i class="fas fa-chevron-down" id='openAppareilFilter'></i></button>
+                    <div id='appareilHide'>
+                        <label for="inputAppareil"></label>
+                        <input type="search" id="inputAppareil" aria-label="Search through appareil"
+                            placeholder="Rechercher un appareil">
+                        <i class="fas fa-chevron-up" id="closeAppareilFilter"></i>
+                        <div id='appareilExample'></div>
+                    </div>
                 </div>
             </div>
 
-            <div id="ustensiles">
-                <button>Ustensiles <i class="fas fa-chevron-down" id='openUstensilesFilter'></i></button>
-                <div id='hiddenUstensilesFilter'>
-                    <label for="inputUstensiles"></label>
-                    <input type="search" id="inputUstensiles" aria-label="Search through ustensiles"
-                        placeholder="Rechercher un ustensile">
-                    <i class="fas fa-chevron-up" id="closeUstensilesFilter"></i>
-                    <div id='ustensilesExample'></div>
+            <div class="col-2">
+                <div id="ustensiles">
+                    <button>Ustensiles <i class="fas fa-chevron-down" id='openUstensilesFilter'></i></button>
+                    <div id='ustensilesHide'>
+                        <label for="inputUstensiles"></label>
+                        <input type="search" id="inputUstensiles" aria-label="Search through ustensiles"
+                            placeholder="Rechercher un ustensile">
+                        <i class="fas fa-chevron-up" id="closeUstensilesFilter"></i>
+                        <div id='ustensilesExample'></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Dynamic search result message: -->
-        <aside id="resultMessage">
-            <span>Aucun résultat</span>
-            <i class="far fa-times-circle"></i>
-        </aside>
-    </header>
+            <!-- Dynamic search result message: -->
+        <div class="row">
+            <div class="col">
+                <aside id="resultMessage">
+                    <span>Aucun résultat</span>
+                    <i class="far fa-times-circle"></i>
+                </aside>
+            </div>
+        </div>
+        
 
-    <!-- RECIPES-->
-    <main id="mainContent">
-    </main>
+        <!-- RECIPES-->
+        <div class="row">
+            <div class="col-3" id="mainContent"> 
+                <div class="card">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-    <script src='Data/recipeData.js'></script>
+    <script src='./js/Data/recipeData.js'></script>
     <script type='module' src='./js/app.js'></script>
 </body>
 
