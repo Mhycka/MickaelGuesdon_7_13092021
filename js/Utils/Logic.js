@@ -1,6 +1,6 @@
 'use strict';
 
-export default class DataLogic {
+export default class Logic {
     // get all the ingredients to make them appear by default, before searching
     static getAllIngredients(ing) {
         let ingredients = [];

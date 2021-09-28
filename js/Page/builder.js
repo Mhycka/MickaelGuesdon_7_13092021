@@ -1,13 +1,13 @@
 'use strict';
 
-// import Appliances from '../filters/Appliances.js';
-import Logic from '../Utils/Logic.js';
-import sectionRecipes from './sectionRecipes.js';
-// import Ingredients from '../filters/Ingredients.js';
-import Message from './Message.js';
-// import Ustensils from '../filters/Ustensils.js';
+import Appliances from '../filters/Appliances.js';
+import Logic from '../Utils/Logic';
+import sectionRecipes from './sectionRecipes';
+import Ingredients from '../filters/Ingredients.js';
+import Message from './Message';
+import Ustensils from '../filters/Ustensils.js';
 
-export default class Builder {
+export default class builder {
     static init() {
         // Build Section with all Recipes before Search
         sectionRecipes.buildResult(recipesApiResult);

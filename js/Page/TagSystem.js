@@ -1,14 +1,14 @@
 'use strict';
 
 import sectionRecipes from './sectionRecipes';
-import Message from './Message.js';
-import Utils from '../utilities/Utils.js';
-import Ingredients from '../filters/Ingredients.js';
-import Appliances from '../filters/Appliances.js';
-import Ustensils from '../filters/Ustensils.js';
-import DataLogic from '../utilities/DataLogic.js';
+import Message from './Message';
+import Utils from '../Utils/UtilsBase';
+import Ingredients from '../filters/Ingredients';
+import Appliances from '../filters/Appliances';
+import Ustensils from '../filters/Ustensils';
+import Logic from '../Utils/Logic';
 
-export default class Badges {
+export default class Tags {
     static hiddenIngredientsFilter = document.querySelector('#hiddenIngredientsFilter');
     static hiddenAppareilFilter = document.querySelector('#hiddenAppareilFilter');
     static hiddenUstensilesFilter = document.querySelector('#hiddenUstensilesFilter');
@@ -64,10 +64,10 @@ export default class Badges {
         Utils.clearRecipesSection();
         sectionRecipes.buildResult(recipes);
         Utils.clearFilters(document.getElementById('ingredientsExample'));
-        Ingredients.fillIngredients(DataLogic.getAllIngredients(recipes));
+        Ingredients.fillIngredients(Logic.getAllIngredients(recipes));
         Utils.clearFilters(document.getElementById('appareilExample'));
-        Appliances.fillAppliances(DataLogic.getAllAppliances(recipes));
+        Appliances.fillAppliances(Logic.getAllAppliances(recipes));
         Utils.clearFilters(document.getElementById('ustensilesExample'));
-        Ustensils.fillUstensils(DataLogic.getAllUstensils(recipes));
+        Ustensils.fillUstensils(Logic.getAllUstensils(recipes));
     }
 }

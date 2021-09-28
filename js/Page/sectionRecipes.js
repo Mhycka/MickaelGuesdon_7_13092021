@@ -1,6 +1,6 @@
 'use strict';
 
-import Utils from '../Utils/Utils.js';
+import Utils from '../Utils/UtilsBase';
 
 export default class sectionRecipes {
     // build the section containing the recipes to display
@@ -13,6 +13,7 @@ export default class sectionRecipes {
     // build each recipe
     static buildRecipe(collection) {
         let section = document.getElementById('mainContent');
+        console.log(section)
 
         return section.appendChild(this.createArticleElt(collection));
     }
@@ -24,6 +25,8 @@ export default class sectionRecipes {
         let dataFilterAppliances = Utils.normalizeText(collection.appliance);
         let dataFilterUstensils = collection.ustensils;
         let dataFilter = collection.ingredients.map(element => Utils.normalizeText(element.ingredient)) + collection.ustensils + Utils.normalizeText(collection.appliance);
+
+        console.log(article, dataFilterAppliances)
 
         article.classList.add('articleRecipes');
         article.setAttribute('data-filter', dataFilter);

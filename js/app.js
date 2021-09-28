@@ -1,11 +1,11 @@
-'use strict';
-import Builder from './page/Builder.js';
-import Messages from './page/Messages.js';
-// import Search from './search/Search.js';
-import Utils from './utilities/Utils.js';
+
+import builder from './Page/builder';
+import Message from './Page/Message';
+import Search from './SearchSystem/search';
+import Utils from './Utils/UtilsBase';
 
 // Build by default without search
-Builder.init();
+builder.init();
 
 // Build with search Input
 document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
@@ -13,13 +13,13 @@ document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
     if (Utils.isValid(valueSearch)) {
         let result = Search.searchMainInput(valueSearch);
         if (result.recipesMatched.length === 0) {
-            return Messages.buildResultMessageWithNoResult();
+            return Message.buildResultMessageWithNoResult();
         }
         Utils.clearRecipesSection();
-        Builder.initSearch(result);
+        builder.initSearch(result);
         return;
     }
     // Reset Build
     Utils.clearRecipesSection();
-    Builder.init();
+    builder.init();
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-export default class Buttons {
+export default class button {
     static launchButtons(btn, open, close, hiddenPart) {
         btn.addEventListener('click', () => {
             this.displayBtn(btn);
