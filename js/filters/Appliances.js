@@ -12,7 +12,7 @@ export default class Appliances {
     static appliancesEx = document.getElementById('appliancesExample');
 
     static init(appliances, recipes) {
-        console.log(appliances, recipes)
+        // console.log(appliances, recipes)
         Utils.clearFilters(this.appliancesEx);
         button.launchButtons(document.querySelector("#appliancesElt > button"),
             document.querySelector("#openAppliancesFilter"),
@@ -26,7 +26,7 @@ export default class Appliances {
 
     // display the appliances in the appliances zone according to the recipes displayed in the 'recipes' section
     static fillAppliances(appliances) {
-        console.log(appliancesExample)
+        // console.log(appliancesExample)
         let ul = document.createElement('ul');
         ul.classList.add('listUlApp');
         this.appliancesEx.appendChild(ul);

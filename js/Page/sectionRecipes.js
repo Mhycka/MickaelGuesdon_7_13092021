@@ -14,13 +14,12 @@ export default class sectionRecipesCard {
     static buildRecipe(collection) {
         let section = document.getElementById('mainContent');
         // console.log(section)
-
-        return section.appendChild(this.createArticleElt(collection));
+        return section.appendChild(this.createSectionElt(collection));
     }
 
     // create the article which will contain the information of each recipe
-    static createArticleElt(collection) {
-        let article = document.createElement('article');
+    static createSectionElt(collection) {
+        let createSection = document.createElement('div');
         let dataFilterIngredients = collection.ingredients.map(element => Utils.normalizeText(element.ingredient));
         let dataFilterAppliances = Utils.normalizeText(collection.appliance);
         let dataFilterUstensils = collection.ustensils;
@@ -28,14 +27,16 @@ export default class sectionRecipesCard {
 
         // console.log(article, dataFilterAppliances)
 
-        article.classList.add('articleRecipes');
-        article.setAttribute('data-filter', dataFilter);
-        article.setAttribute('data-filter-ingredients', dataFilterIngredients);
-        article.setAttribute('data-filter-appliances', dataFilterAppliances);
-        article.setAttribute('data-filter-ustensils', dataFilterUstensils);
-        article.innerHTML = this.getArticleInnerHTML(collection);
+        createSection.classList.add('col-3.5');
 
-        return article;
+        createSection.classList.add('articleRecipes');
+        createSection.setAttribute('data-filter', dataFilter);
+        createSection.setAttribute('data-filter-ingredients', dataFilterIngredients);
+        createSection.setAttribute('data-filter-appliances', dataFilterAppliances);
+        createSection.setAttribute('data-filter-ustensils', dataFilterUstensils);
+        createSection.innerHTML = this.getArticleInnerHTML(collection);
+
+        return createSection;
     }
 
     static getArticleInnerHTML(collection) {
