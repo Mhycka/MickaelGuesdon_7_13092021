@@ -1,8 +1,8 @@
 
-import builder from './Page/builder';
-import Message from './Page/Message';
-import Search from './SearchSystem/search';
-import Utils from './Utils/UtilsBase';
+import builder from './Page/builder.js';
+import MessageAlert from './Page/Message.js';
+import Search from './SearchSystem/search.js';
+import Utils from './UtilsElt/UtilsBase.js';
 
 // Build by default without search
 builder.init();
@@ -13,7 +13,7 @@ document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
     if (Utils.isValid(valueSearch)) {
         let result = Search.searchMainInput(valueSearch);
         if (result.recipesMatched.length === 0) {
-            return Message.buildResultMessageWithNoResult();
+            return MessageAlert.buildResultMessageWithNoResult();
         }
         Utils.clearRecipesSection();
         builder.initSearch(result);

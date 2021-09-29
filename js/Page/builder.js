@@ -1,29 +1,30 @@
-'use strict';
+// 'use strict';
 
 import Appliances from '../filters/Appliances.js';
-import Logic from '../Utils/Logic';
-import sectionRecipes from './sectionRecipes';
+
+import Logic from '../UtilsElt/Logic.js';
+import sectionRecipesCard from './sectionRecipes.js';
 import Ingredients from '../filters/Ingredients.js';
-import Message from './Message';
+import MessageAlert from './Message.js';
 import Ustensils from '../filters/Ustensils.js';
 
 export default class builder {
     static init() {
         // Build Section with all Recipes before Search
-        sectionRecipes.buildResult(recipesApiResult);
-        Message.hideMessage();
+        sectionRecipesCard.buildResult(recipesData);
+        MessageAlert.hideMessage();
         // Ingredients logic
-        Ingredients.init(Logic.getAllIngredients(recipesApiResult), recipesApiResult);
+        Ingredients.init(Logic.getAllIngredients(recipesData), recipesData);
         // Appliances logic
-        Appliances.init(Logic.getAllAppliances(recipesApiResult), recipesApiResult);
+        Appliances.init(Logic.getAllAppliances(recipesData), recipesData);
         // Ustensils logic
-        Ustensils.init(Logic.getAllUstensils(recipesApiResult), recipesApiResult);
+        Ustensils.init(Logic.getAllUstensils(recipesData), recipesData);
     }
 
     static initSearch(result) {
         // Build Section after Search
-        sectionRecipes.buildResult(result.recipesMatched);
-        Message.buildResultMessageWithResult(result.recipesMatched);
+        sectionRecipesCard.buildResult(result.recipesMatched);
+        MessageAlert.buildResultMessageWithResult(result.recipesMatched);
         // Ingredients logic
         Ingredients.init(result.ingredients, result.recipesMatched);
         // Appliances logic

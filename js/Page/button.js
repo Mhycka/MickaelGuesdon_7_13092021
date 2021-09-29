@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 export default class button {
     static launchButtons(btn, open, close, hiddenPart) {

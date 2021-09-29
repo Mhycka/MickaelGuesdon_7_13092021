@@ -27,7 +27,7 @@
                 <form id='searchBar'>
                     <label for="searchBarInput"></label>
                     <input type="search" id="searchBarInput"
-                        placeholder="Rechercher un ingrédient, appareil, ustensile ou une recette"
+                        placeholder="Rechercher un ingrédient, appareils, ustensile ou une recette"
                         aria-label="Search through site content">
                     <i class="fas fa-search"></i>
                 </form>
@@ -39,7 +39,7 @@
             <div class="col">
                 <nav id="tagsBadges">
                     <span id="ingredientTag"></span>
-                    <span id="appareilTag"></span>
+                    <span id="appliancesTag"></span>
                     <span id="ustensileTag"></span>
                 </nav>
             </div>
@@ -47,42 +47,36 @@
           
             <!-- FILTER -->
         <div class="row" id="filter">
-            <div class="col-2">
-                <div id="ingredients">
-                    <button>Ingrédients<i class="fas fa-chevron-down" id='openIngredientsFilter'></i></button>
-                    <div id='ingredientsHide'>
-                        <label for="inputIngredients"></label>
-                        <input type="search" id="inputIngredients" aria-label="Search through ingredients"
-                            placeholder="Rechercher un ingrédient">
-                        <i class="fas fa-chevron-up" id="closeIngredientsFilter"></i>
-                        <div id='ingredientsExample'></div>
-                    </div>
+            <div class="col-2" id="ingredientsElt">
+                <button>Ingrédients<i class="fas fa-chevron-down" id='openIngredientsFilter'></i></button>
+                <div id='ingredientsHide'>
+                    <label for="inputIngredients"></label>
+                    <input type="search" id="inputIngredients" aria-label="Search through ingredients"
+                        placeholder="Rechercher un ingrédient">
+                    <i class="fas fa-chevron-up" id="closeIngredientsFilter"></i>
+                    <div id='ingredientsExample'></div>
                 </div>
             </div>
 
-            <div class="col-2">
-                <div id="appareil">
-                    <button>Appareil<i class="fas fa-chevron-down" id='openAppareilFilter'></i></button>
-                    <div id='appareilHide'>
-                        <label for="inputAppareil"></label>
-                        <input type="search" id="inputAppareil" aria-label="Search through appareil"
-                            placeholder="Rechercher un appareil">
-                        <i class="fas fa-chevron-up" id="closeAppareilFilter"></i>
-                        <div id='appareilExample'></div>
-                    </div>
+            <div class="col-2" id="appliancesElt">
+                <button>Appareils<i class="fas fa-chevron-down" id='openAppliancesFilter'></i></button>
+                <div id='appliancesHide'>
+                    <label for="inputAppliances"></label>
+                    <input type="search" id="inputAppliances" aria-label="Search through appliances"
+                        placeholder="Rechercher un appareil">
+                    <i class="fas fa-chevron-up" id="closeAppliancesFilter"></i>
+                    <div id='appliancesExample'></div>
                 </div>
             </div>
 
-            <div class="col-2">
-                <div id="ustensiles">
-                    <button>Ustensiles<i class="fas fa-chevron-down" id='openUstensilesFilter'></i></button>
-                    <div id='ustensilesHide'>
-                        <label for="inputUstensiles"></label>
-                        <input type="search" id="inputUstensiles" aria-label="Search through ustensiles"
-                            placeholder="Rechercher un ustensile">
-                        <i class="fas fa-chevron-up" id="closeUstensilesFilter"></i>
-                        <div id='ustensilesExample'></div>
-                    </div>
+            <div class="col-2" id="ustensilesElt">
+                <button>Ustensiles<i class="fas fa-chevron-down" id='openUstensilesFilter'></i></button>
+                <div id='ustensilesHide'>
+                    <label for="inputUstensiles"></label>
+                    <input type="search" id="inputUstensiles" aria-label="Search through ustensiles"
+                        placeholder="Rechercher un ustensile">
+                    <i class="fas fa-chevron-up" id="closeUstensilesFilter"></i>
+                    <div id='ustensilesExample'></div>
                 </div>
             </div>
         </div>
@@ -100,18 +94,19 @@
 
         <!-- RECIPES-->
         <div class="row" id="mainContent">
-            <!-- <div class="col-3" id="mainContent"></div> -->
+            <!-- <div class="col" id="mainContent"></div> -->
         </div>
     </div>
     
     <!-- Optional JavaScript -->
     <script src='./js/Data/recipeData.js'></script>
     <script type='module' src='./js/app.js'></script>
-
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

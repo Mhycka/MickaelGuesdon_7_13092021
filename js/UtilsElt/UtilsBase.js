@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 export default class Utils {
     // search starts from 3 characters

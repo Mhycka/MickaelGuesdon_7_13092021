@@ -1,22 +1,22 @@
-'use strict';
+// 'use strict';
 
-import button from '../page/button';
-import sectionRecipes from '../Page/sectionRecipes';
-import Message from '../page/Message.js';
-import Search from '../SearchSystem/search';
-import Tags from '../Page/TagSystem';
-import Utils from '../Utils/UtilsBase';
-import Logic from '../Utils/Logic';
+import button from '../page/button.js';
+import sectionRecipesCard from '../Page/sectionRecipes.js';
+import MessageAlert from '../page/Message.js';
+import Search from '../SearchSystem/search.js';
+import Tags from '../Page/TagSystem.js';
+import Utils from '../UtilsElt/UtilsBase.js';
+import Logic from '../UtilsElt/Logic.js';
 
 export default class Ingredients {
     static ingredientsExample = document.getElementById('ingredientsExample');
 
     static init(ingredients, recipes) {
         Utils.clearFilters(this.ingredientsExample);
-        button.launchButtons(document.querySelector("#ingredients > button"),
+        button.launchButtons(document.querySelector("#ingredientsElt > button"),
             document.querySelector("#openIngredientsFilter"),
             document.querySelector("#closeIngredientsFilter"),
-            document.querySelector("#hiddenIngredientsFilter"));
+            document.querySelector("#ingredientsHide"));
         this.fillIngredients(Utils.sortByTitle(ingredients));
         this.searchInput(ingredients);
         this.filterTags(recipes);
@@ -60,16 +60,16 @@ export default class Ingredients {
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
                 selected.push(event.target.getAttribute('data-filter'));
-                button.hideButtonsOnClick(document.querySelector("#ingredients > button"),
+                button.hideButtonsOnClick(document.querySelector("#ingredientsElt > button"),
                     document.querySelector("#openIngredientsFilter"),
-                    document.querySelector("#hiddenIngredientsFilter"))
+                    document.querySelector("#ingredientsHide"))
                 Tags
                     .buildTags(ingredientTag, Utils.upperText(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#ingredientTag > i"), event, ingredientTag, recipes);
-                Message.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
+                MessageAlert.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
                 Utils.clearRecipesSection();
                 let result = Search.searchByIngTags(recipes, selected);
-                sectionRecipes.buildResult(result);
+                sectionRecipesCard.buildResult(result);
                 Utils.clearFilters(this.ingredientsExample);
                 this.fillIngredients(Utils.sortByTitle(Logic.getAllIngredients(result)));
             } else {

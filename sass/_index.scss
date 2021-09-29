@@ -1,6 +1,6 @@
 
 
-#ingredients > button, #appareil > button, #ustensiles > button {
+#ingredientsElt > button, #appliancesElt > button, #ustensilesElt > button {
     align-items: center;
     border: none;
     border-radius: .3125rem;
@@ -16,20 +16,57 @@
     width: 11rem;
 }
 
-#ingredients > button {
+#ingredientsElt > button, #inputIngredients {
     background-color: #3282F7;
 }
 
-#appareil > button {
+#tagsBadges > #appliancesTag, #appliancesHide, #inputAppliances, #appliancesElt > button {
     background-color: #68D9A4;;
 }
 
-#ustensiles > button {
+#ustensilesElt > button {
     background-color: #ED6454;
 }
 
-#ingredientsHide, #appareilHide, #ustensilesHide {
+#ingredientsHide, #appliancesHide, #ustensilesHide {
     display: none;
+}
+
+#ingredientsHide {
+    background-color: #3282F7;
+    border-radius: 5px;
+    color: #ffff;
+    display: none;
+    position: absolute;
+    top: 4rem;
+    width: 35rem;
+    z-index: 10;
+}
+
+#inputIngredients,#inputAppliances,#inputUstensiles {
+    border: none;
+    border-radius: 5px;
+    color: #ffff;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    height: 4.3125rem;
+    outline: none;
+    padding: 2rem;
+    width: 100%;
+}
+
+#closeIngredientsFilter, #closeAppareilFilter,#closeUstensilesFilter {
+    font-size: 1.125rem;
+    left: 32rem;
+    position: absolute;
+    top: 1.8rem;
+}
+
+.listUlApp>li:hover {
+    background-color: #ffff;
+    color: #68D9A4;
 }
 
 #resultMessage {

@@ -1,8 +1,8 @@
-'use strict';
+// 'use strict';
 
-import Utils from '../Utils/UtilsBase';
+import Utils from '../UtilsElt/UtilsBase.js';
 
-export default class sectionRecipes {
+export default class sectionRecipesCard {
     // build the section containing the recipes to display
     static buildResult(collections) {
         return collections.forEach(collection => {
@@ -13,7 +13,7 @@ export default class sectionRecipes {
     // build each recipe
     static buildRecipe(collection) {
         let section = document.getElementById('mainContent');
-        console.log(section)
+        // console.log(section)
 
         return section.appendChild(this.createArticleElt(collection));
     }
@@ -26,7 +26,7 @@ export default class sectionRecipes {
         let dataFilterUstensils = collection.ustensils;
         let dataFilter = collection.ingredients.map(element => Utils.normalizeText(element.ingredient)) + collection.ustensils + Utils.normalizeText(collection.appliance);
 
-        console.log(article, dataFilterAppliances)
+        // console.log(article, dataFilterAppliances)
 
         article.classList.add('articleRecipes');
         article.setAttribute('data-filter', dataFilter);

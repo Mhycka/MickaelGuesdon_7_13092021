@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 export default class Logic {
     // get all the ingredients to make them appear by default, before searching

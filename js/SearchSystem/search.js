@@ -1,13 +1,13 @@
-'use strict';
+// 'use strict';
 
-import Logic from '../Utils/Logic';
-import Utils from '../Utils/UtilsBase';
+import Logic from '../UtilsElt/Logic.js';
+import Utils from '../UtilsElt/UtilsBase.js';
 
 export default class Search {
     static searchMainInput(value) {
         let recipesMatched = [];
 
-        recipesApiResult.forEach(recipe => {
+        recipesData.forEach(recipe => {
             if (Utils.normalizeText(recipe.name).includes(Utils.normalizeText(value)) || Utils.normalizeText(recipe.description).includes(Utils.normalizeText(value)) || recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(value))) {
                 recipesMatched.push(recipe);
             };

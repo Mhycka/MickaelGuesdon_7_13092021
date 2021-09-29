@@ -1,22 +1,22 @@
-'use strict';
+// 'use strict';
 
-import button from '../Page/button';
-import Logic from '../Utils/Logic';
-import sectionRecipes from '../Page/sectionRecipes';
-import Message from '../Page/Message';
-import Search from '../SearchSystem/search';
-import Tags from '../Page/TagSystem';
-import Utils from '../Utils/UtilsBase';
+import button from '../Page/button.js';
+import Logic from '../UtilsElt/Logic.js';
+import sectionRecipesCard from '../Page/sectionRecipes.js';
+import MessageAlert from '../Page/Message.js';
+import Search from '../SearchSystem/search.js';
+import Tags from '../Page/TagSystem.js';
+import Utils from '../UtilsElt/UtilsBase.js';
 
 export default class Ustensils {
     static ustensilsExample = document.getElementById('ustensilesExample');
 
     static init(ustensils, recipes) {
         Utils.clearFilters(this.ustensilsExample);
-        button.launchButtons(document.querySelector("#ustensiles > button"),
+        button.launchButtons(document.querySelector("#ustensilesElt > button"),
             document.querySelector("#openUstensilesFilter"),
             document.querySelector("#closeUstensilesFilter"),
-            document.querySelector("#hiddenUstensilesFilter"));
+            document.querySelector("#ustensilesHide"));
         this.fillUstensils(Utils.sortByTitle(ustensils));
         this.searchInput(ustensils);
         this.filterTags(recipes);
@@ -61,15 +61,15 @@ export default class Ustensils {
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
                 selected.push(event.target.getAttribute('data-filter'));
-                button.hideButtonsOnClick(document.querySelector("#ustensiles > button"),
+                button.hideButtonsOnClick(document.querySelector("#ustensilesElt > button"),
                     document.querySelector("#openUstensilesFilter"),
-                    document.querySelector("#hiddenUstensilesFilter"))
+                    document.querySelector("#ustensilesHide"))
                 Tags
                     .buildTags(ustensileTag, Utils.upperText(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#ustensileTag > i"), event, ustensileTag, recipes);
-                Message.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
+                MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearRecipesSection();
-                sectionRecipes.buildResult(Search.searchByUstTags(recipes, selected));
+                sectionRecipesCard.buildResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearFilters(this.ustensilsExample);
                 this.fillUstensils(Utils.sortByTitle(Logic.getAllUstensils(Search.searchByUstTags(recipes, selected))));
             } else {

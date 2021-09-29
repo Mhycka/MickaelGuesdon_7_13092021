@@ -1,17 +1,17 @@
-'use strict';
+// 'use strict';
 
-import sectionRecipes from './sectionRecipes';
-import Message from './Message';
-import Utils from '../Utils/UtilsBase';
-import Ingredients from '../filters/Ingredients';
-import Appliances from '../filters/Appliances';
-import Ustensils from '../filters/Ustensils';
-import Logic from '../Utils/Logic';
+import sectionRecipesCard from './sectionRecipes.js';
+import MessageAlert from './Message.js';
+import Utils from '../UtilsElt/UtilsBase.js';
+import Ingredients from '../filters/Ingredients.js';
+import Appliances from '../filters/Appliances.js';
+import Ustensils from '../filters/Ustensils.js';
+import Logic from '../UtilsElt/Logic.js';
 
 export default class Tags {
-    static hiddenIngredientsFilter = document.querySelector('#hiddenIngredientsFilter');
-    static hiddenAppareilFilter = document.querySelector('#hiddenAppareilFilter');
-    static hiddenUstensilesFilter = document.querySelector('#hiddenUstensilesFilter');
+    static hiddenIngredientsFilter = document.querySelector('#ingredientsHide');
+    static hiddenAppliancesFilter = document.querySelector('#appliancesHide');
+    static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
 
     // displays a badge containing the tag of the ingredient/appliance/ustensil that the user has selected
     static buildTags(elt, tag) {
@@ -40,14 +40,14 @@ export default class Tags {
     // push down the ingredient/appliance/ustensil buttons
     static pushDownButtonsFilter() {
         this.hiddenIngredientsFilter.style.top = '20rem';
-        this.hiddenAppareilFilter.style.top = '20rem';
+        this.hiddenAppliancesFilter.style.top = '20rem';
         this.hiddenUstensilesFilter.style.top = '20rem';
     }
 
     // push up the ingredient/appliance/ustensil buttons
     static pushUpButtonsFilter() {
         this.hiddenIngredientsFilter.style.top = '16.2rem';
-        this.hiddenAppareilFilter.style.top = '16.2rem';
+        this.hiddenAppliancesFilter.style.top = '16.2rem';
         this.hiddenUstensilesFilter.style.top = '16.2rem';
     }
 
@@ -60,12 +60,12 @@ export default class Tags {
     static resetSection(event, eltBadge, recipes) {
         event.target.classList.remove('selected');
         this.hideTag(eltBadge);
-        Message.buildResultMessageWithResult(recipes);
+        MessageAlert.buildResultMessageWithResult(recipes);
         Utils.clearRecipesSection();
-        sectionRecipes.buildResult(recipes);
+        sectionRecipesCard.buildResult(recipes);
         Utils.clearFilters(document.getElementById('ingredientsExample'));
         Ingredients.fillIngredients(Logic.getAllIngredients(recipes));
-        Utils.clearFilters(document.getElementById('appareilExample'));
+        Utils.clearFilters(document.getElementById('appliancesExample'));
         Appliances.fillAppliances(Logic.getAllAppliances(recipes));
         Utils.clearFilters(document.getElementById('ustensilesExample'));
         Ustensils.fillUstensils(Logic.getAllUstensils(recipes));

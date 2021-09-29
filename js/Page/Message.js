@@ -1,6 +1,6 @@
-'use strict';
+// 'use strict';
 
-export default class Message {
+export default class MessageAlert {
     static resultMessage = document.getElementById('resultMessage');
     static resultSpan = document.querySelector('#resultMessage > span');
 
