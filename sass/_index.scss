@@ -1,4 +1,28 @@
 
+#ingredients>button:hover {
+    background-color: #0751bc;
+}
+
+#ingredientTag>i:hover {
+    color: #0751bc;
+}
+
+#appliances>button:hover {
+    background-color: #2caf72;
+}
+
+#appliancesTag>i:hover {
+    color: #2caf72;
+}
+
+#ustensiles>button:hover {
+    background-color: #dd2c17;
+}
+
+#ustensileTag>i:hover {
+    color: #dd2c17;
+}
+
 #ingredientsElt > button, #appliancesElt > button, #ustensilesElt > button {
     align-items: center;
     border: none;
@@ -23,7 +47,7 @@
     background-color: #68D9A4;;
 }
 
-#ustensilesElt > button {
+#ustensilesElt > button, #inputUstensiles, #ustensilesHide {
     background-color: #ED6454;
 }
 
@@ -31,7 +55,7 @@
     display: none;
 }
 
-#ingredientsHide {
+#ingredientsHide{
     background-color: #3282F7;
     border-radius: 5px;
     color: #ffff;
@@ -66,6 +90,38 @@
 .listUlApp>li:hover {
     background-color: #ffff;
     color: #68D9A4;
+}
+
+.listUlIng, .listUlApp,.listUlUst {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: .5rem;
+}
+
+.listUlIng>li,
+.listUlApp>li,
+.listUlUst>li {
+    font-size: 1.21rem;
+    overflow: hidden;
+    padding: .5rem 1rem;
+    text-align: start;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 9rem;
+}
+
+.listUlIng>li.list-ingredients.selected,
+.listUlApp>li.list-appareil.selected,
+.listUlUst>li.list-ustensiles.selected {
+    background-color: #000;
+}
+
+.listUlIng>li:hover {
+    background-color: #ffff;
+    color: #3282F7;
 }
 
 #resultMessage {
@@ -163,4 +219,13 @@ input {
 
 #mainContent>div>div.recipeTitle>span>i {
 	margin-right: .3rem;
+}
+
+#mainContent>article>img {
+	height: 11.125rem;
+	width: 23.75rem;
+}
+
+#resultMessage>i:hover {
+	transform: scale(1.1);
 }
