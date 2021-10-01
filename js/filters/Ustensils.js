@@ -9,10 +9,10 @@ import Tags from '../Page/TagSystem.js';
 import Utils from '../UtilsElt/UtilsBase.js';
 
 export default class Ustensils {
-    static ustensilsExample = document.getElementById('ustensilesExample');
+    static ustensilsEx = document.getElementById('ustensilesExample');
 
     static init(ustensils, recipes) {
-        Utils.clearFilters(this.ustensilsExample);
+        Utils.clearFilters(this.ustensilsEx);
         button.launchButtons(document.querySelector("#ustensilesElt > button"),
             document.querySelector("#openUstensilesFilter"),
             document.querySelector("#closeUstensilesFilter"),
@@ -27,7 +27,7 @@ export default class Ustensils {
     static fillUstensils(ustensils) {
         let ul = document.createElement('ul');
         ul.classList.add('listUlUst');
-        this.ustensilsExample.appendChild(ul);
+        this.ustensilsEx.appendChild(ul);
 
         ustensils.forEach((ustensils) => {
             let listUstensils = document.createElement('li');
@@ -43,7 +43,7 @@ export default class Ustensils {
     static searchInput(ustensils) {
         document.getElementById('inputUstensiles').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;
-            Utils.clearFilters(this.ustensilsExample);
+            Utils.clearFilters(this.ustensilsEx);
             this.fillUstensils(
                 Utils.isValid(valueSearch) ?
                 Search.searchInputFilters(ustensils, valueSearch) :
@@ -70,7 +70,7 @@ export default class Ustensils {
                 MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByUstTags(recipes, selected));
-                Utils.clearFilters(this.ustensilsExample);
+                Utils.clearFilters(this.ustensilsEx);
                 this.fillUstensils(Utils.sortByTitle(Logic.getAllUstensils(Search.searchByUstTags(recipes, selected))));
             } else {
                 selected.splice(event.target.getAttribute('data-filter'));

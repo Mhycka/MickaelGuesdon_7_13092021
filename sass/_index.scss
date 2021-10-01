@@ -5,7 +5,7 @@
     width: 95%;
 
 	i {
-		background-color: #E7E7E7;
+		background-color: $color-backgroundRecipeCard;
 		border: none;
 		cursor: pointer;
 		font-size: 1.5rem;
@@ -15,7 +15,7 @@
 	}
 
 	#searchBarInput {
-		background-color: #E7E7E7;
+		background-color: $color-backgroundRecipeCard;
 		border: #FFF solid 1px;
 		border-radius: .3125rem;
 		font-size: 1rem;
@@ -57,7 +57,7 @@
 	margin: 0;
 
 	.articleRecipes{
-		background-color: #E7E7E7;
+		background-color: $color-backgroundRecipeCard;
 		border-radius: .3125rem;
 		height: auto;
 		margin-bottom: 2.5rem;
@@ -74,7 +74,7 @@
 
 		.recipeTitle {
 			align-items: center;
-			background-color: #E7E7E7;
+			background-color: $color-backgroundRecipeCard;
 			display: flex;
 			justify-content: space-between;
 			margin-left: 1rem;

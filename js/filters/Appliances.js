@@ -45,7 +45,7 @@ export default class Appliances {
     static searchInput(appliances) {
         document.getElementById('inputAppliances').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;
-            Utils.clearFilters(this.appliancesExample);
+            Utils.clearFilters(this.appliancesEx);
             this.fillAppliances(
                 Utils.isValid(valueSearch) ?
                 Search.searchInputFilters(appliances, valueSearch) :
@@ -68,11 +68,11 @@ export default class Appliances {
                     document.querySelector("#appliancesHide"))
                 Tags
                     .buildTags(AppliancesTag, Utils.upperText(event.target.getAttribute('data-filter')))
-                    .removeTagsOnClick(document.querySelector("#AppliancesTag > i"), event, AppliancesTag, recipes);
+                    .removeTagsOnClick(document.querySelector("#appliancesTag > i"), event, AppliancesTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByAppTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByAppTags(recipes, selected));
-                Utils.clearFilters(this.appliancesExample);
+                Utils.clearFilters(this.appliancesEx);
                 this.fillAppliances(Utils.sortByTitle(Logic.getAllAppliances(Search.searchByAppTags(recipes, selected))));
             } else {
                 selected.splice(event.target.getAttribute('data-filter'));

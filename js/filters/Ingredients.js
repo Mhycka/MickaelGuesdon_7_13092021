@@ -9,10 +9,10 @@ import Utils from '../UtilsElt/UtilsBase.js';
 import Logic from '../UtilsElt/Logic.js';
 
 export default class Ingredients {
-    static ingredientsExample = document.getElementById('ingredientsExample');
+    static ingredientsEx = document.getElementById('ingredientsExample');
 
     static init(ingredients, recipes) {
-        Utils.clearFilters(this.ingredientsExample);
+        Utils.clearFilters(this.ingredientsEx);
         button.launchButtons(document.querySelector("#ingredientsElt > button"),
             document.querySelector("#openIngredientsFilter"),
             document.querySelector("#closeIngredientsFilter"),
@@ -26,7 +26,7 @@ export default class Ingredients {
     static fillIngredients(ingredients) {
         let ul = document.createElement('ul');
         ul.classList.add('listUlIng');
-        this.ingredientsExample.appendChild(ul);
+        this.ingredientsEx.appendChild(ul);
 
         ingredients.forEach((ingredient) => {
             let listIngredients = document.createElement('li');
@@ -42,7 +42,7 @@ export default class Ingredients {
     static searchInput(ingredients) {
         document.getElementById('inputIngredients').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;
-            Utils.clearFilters(this.ingredientsExample);
+            Utils.clearFilters(this.ingredientsEx);
             this.fillIngredients(
                 Utils.isValid(valueSearch) ?
                 Search.searchInputFilters(ingredients, valueSearch) :
@@ -70,7 +70,7 @@ export default class Ingredients {
                 Utils.clearRecipesSection();
                 let result = Search.searchByIngTags(recipes, selected);
                 sectionRecipesCard.buildResult(result);
-                Utils.clearFilters(this.ingredientsExample);
+                Utils.clearFilters(this.ingredientsEx);
                 this.fillIngredients(Utils.sortByTitle(Logic.getAllIngredients(result)));
             } else {
                 selected.splice(event.target.getAttribute('data-filter'));

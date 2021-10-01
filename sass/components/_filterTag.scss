@@ -16,37 +16,37 @@
     }
 
     #ingredientTag {
-        background-color: #3282F7;
+        background-color: $color-ingredients;
 
         i{
             margin-left: 0.5rem;
     
             &:hover {
-                color: #0751bc;
+                color: $color-ingredientsHover;
             }
         }
     }
 
     #appliancesTag {
-        background-color: #68D9A4;
+        background-color: $color-appliances;
 
         i{
             margin-left: 0.5rem;
     
             &:hover {
-                color: #2caf72;
+                color: $color-appliancesHover;
             }
         }
     }
 
     #ustensileTag{
-        background-color: #ED6454;
+        background-color: $color-ustensiles;
 
         i{
             margin-left: 0.5rem;
     
             &:hover {
-                color: #dd2c17;
+                color: $color-ustensilesHover;
             }
         }
     } 
@@ -70,7 +70,7 @@
         border: none;
         border-radius: .3125rem;
         color: #ffff;
-        background-color: #3282F7;
+        background-color: $color-ingredients;
         cursor: pointer;
         display: flex;
         font-size: 1.125rem;
@@ -82,14 +82,14 @@
         width: 11rem;
 
         &:hover {
-            background-color: #0751bc;
+            background-color: $color-ingredientsHover;
         }
     }
 
     #ingredientsHide {
         border-radius: 5px;
         color: #ffff;
-        background-color: #3282F7;
+        background-color: $color-ingredients;
         display: none;
         position: absolute;
         top: 0rem;
@@ -114,7 +114,7 @@
         border: none;
         border-radius: .3125rem;
         color: #ffff;
-        background-color: #68D9A4;
+        background-color: $color-appliances;
         cursor: pointer;
         display: flex;
         font-size: 1.125rem;
@@ -126,14 +126,14 @@
         width: 11rem;
 
         &:hover {
-            background-color: #2caf72;
+            background-color: $color-appliancesHover;
         }
     }
 
     #appliancesHide {
         border-radius: 5px;
         color: #ffff;
-        background-color: #68D9A4;
+        background-color: $color-appliances;
         display: none;
         position: absolute;
         top: 0rem;
@@ -158,7 +158,7 @@
         border: none;
         border-radius: .3125rem;
         color: #ffff;
-        background-color: #ED6454;
+        background-color: $color-ustensiles;
         cursor: pointer;
         display: flex;
         font-size: 1.125rem;
@@ -170,14 +170,14 @@
         width: 11rem;
 
         &:hover {
-            background-color: #dd2c17;
+            background-color: $color-ustensilesHover;
         }
     }
 
     #ustensilesHide {
         border-radius: 5px;
         color: #ffff;
-        background-color: #ED6454;
+        background-color: $color-ustensiles;
         display: none;
         position: absolute;
         top: 0rem;
@@ -212,7 +212,7 @@
 
         &:hover {
             background-color: #ffff;
-            color: #3282F7;
+            color: $color-ingredients;
         }
 
         .list-ustensiles {
@@ -242,7 +242,7 @@
 
         &:hover {
             background-color: #ffff;
-            color: #68D9A4;
+            color: $color-appliances;
         }
         
         .list-ustensiles {
@@ -272,7 +272,7 @@
 
         &:hover {
             background-color: #ffff;
-            color: #ED6454;
+            color: $color-ustensiles;
         }
 
         .list-ustensiles {
@@ -286,9 +286,8 @@
 #inputIngredients {
     border: none;
     border-radius: 5px;
-    background-color: #3282F7;
+    background-color: $color-ingredients;
     color: #ffff;
-    font-family: Lato;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -307,8 +306,7 @@
     border: none;
     border-radius: 5px;
     color: #ffff;
-    background-color: #68D9A4;
-    font-family: Lato;
+    background-color: $color-appliances;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -327,8 +325,7 @@
     border: none;
     border-radius: 5px;
     color: #ffff;
-    background-color: #ED6454;
-    font-family: Lato;
+    background-color: $color-ustensiles;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
