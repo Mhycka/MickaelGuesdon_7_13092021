@@ -39,16 +39,16 @@ export default class Tags {
 
     // push down the ingredient/appliance/ustensil buttons
     static pushDownButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '20rem';
-        this.hiddenAppliancesFilter.style.top = '20rem';
-        this.hiddenUstensilesFilter.style.top = '20rem';
+        this.hiddenIngredientsFilter.style.top = '0rem';
+        this.hiddenAppliancesFilter.style.top = '0rem';
+        this.hiddenUstensilesFilter.style.top = '0rem';
     }
 
     // push up the ingredient/appliance/ustensil buttons
     static pushUpButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '16.2rem';
-        this.hiddenAppliancesFilter.style.top = '16.2rem';
-        this.hiddenUstensilesFilter.style.top = '16.2rem';
+        this.hiddenIngredientsFilter.style.top = '0rem';
+        this.hiddenAppliancesFilter.style.top = '0rem';
+        this.hiddenUstensilesFilter.style.top = '0rem';
     }
 
     static removeTagsOnClick(tag, event, eltBadge, recipes) {

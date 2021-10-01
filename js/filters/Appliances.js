@@ -55,7 +55,7 @@ export default class Appliances {
 
     static filterTags(recipes) {
         let selected = [];
-        let AppliancesTag = document.getElementById('AppliancesTag');
+        let AppliancesTag = document.getElementById('appliancesTag');
 
         document.querySelector('#appliancesExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
@@ -65,7 +65,7 @@ export default class Appliances {
                 selected.push(event.target.getAttribute('data-filter'));
                 button.hideButtonsOnClick(document.querySelector("#appliancesElt > button"),
                     document.querySelector("#openAppliancesFilter"),
-                    document.querySelector("#hiddenAppliancesFilter"))
+                    document.querySelector("#appliancesHide"))
                 Tags
                     .buildTags(AppliancesTag, Utils.upperText(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#AppliancesTag > i"), event, AppliancesTag, recipes);
