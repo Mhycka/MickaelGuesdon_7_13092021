@@ -211,8 +211,8 @@
         width: 9rem;
 
         &:hover {
-            background-color: #ffff;
-            color: $color-ingredients;
+            background-color: $color-ingredientsHover;
+            color: #fff;
         }
 
         .list-ustensiles {
@@ -241,8 +241,8 @@
         width: 9rem;
 
         &:hover {
-            background-color: #ffff;
-            color: $color-appliances;
+            background-color: $color-appliancesHover;
+            color: #fff;
         }
         
         .list-ustensiles {
@@ -271,8 +271,8 @@
         width: 9rem;
 
         &:hover {
-            background-color: #ffff;
-            color: $color-ustensiles;
+            background-color: $color-ustensilesHover;
+            color: #fff;
         }
 
         .list-ustensiles {
