@@ -1,0 +1,21 @@
+{
+  "name": "mickaelguesdon_7_13092021",
+  "version": "1.0.0",
+  "description": "7ème projet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch ./sass/app.scss:css/style.css --style compressed",
+    "prefix": "postcss css/style.css --use autoprefixer -d css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mhycka/MickaelGuesdon_7_13092021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mhycka/MickaelGuesdon_7_13092021/issues"
+  },
+  "homepage": "https://github.com/Mhycka/MickaelGuesdon_7_13092021#readme"
+}
