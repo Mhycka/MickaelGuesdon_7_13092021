@@ -1,6 +1,11 @@
 // 'use strict';
 
 export default class button {
+    static btnIng = document.querySelector("#ingredientsElt > button");
+    static btnApp = document.querySelector("#appliancesElt > button");
+    static btnUst = document.querySelector("#ustensilesElt > button");
+
+
     static launchButtons(btn, open, close, hiddenPart) {
         btn.addEventListener('click', () => {
             // console.log(ingredients)
@@ -21,7 +26,14 @@ export default class button {
     }
 
     static displayBtn(btn) {
-        return btn.style.width = "35rem";
+        if(screen.width <= 576) {
+            this.btnIng.style.width = "11rem";
+            this.btnApp.style.width = "11rem";
+            this.btnUst.style.width = "11rem";
+        } else {
+            return btn.style.width = "35rem";
+
+        }
     }
 
     static hideBtn(btn) {

@@ -54,6 +54,8 @@ export default class Tags {
     static removeTagsOnClick(tag, event, eltBadge, recipes) {
         tag.addEventListener('click', () => {
             this.resetSection(event, eltBadge, recipes);
+            location.reload();
+
         })
     }
 

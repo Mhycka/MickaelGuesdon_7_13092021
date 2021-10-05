@@ -59,6 +59,8 @@ export default class Appliances {
 
         document.querySelector('#appliancesExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
+            console.log(classValue)
+
 
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
