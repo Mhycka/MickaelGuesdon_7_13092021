@@ -3,10 +3,10 @@ import MessageAlert from './Page/Message.js';
 import Search from './SearchSystem/search.js';
 import Utils from './UtilsElt/UtilsBase.js';
 
-// Build by default without search
+// Build by default
 builder.init();
 
-// Build with search Input
+// Build with search
 document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
     let valueSearch = key.target.value;
     if (Utils.isValid(valueSearch)) {
@@ -18,7 +18,7 @@ document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
         builder.initSearch(result);
         return;
     }
-    // Reset Build
+    // Reset Build system
     Utils.clearRecipesSection();
     builder.init();
 });

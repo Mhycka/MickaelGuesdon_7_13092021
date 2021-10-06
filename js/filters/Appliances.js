@@ -24,7 +24,7 @@ export default class Appliances {
         return this;
     }
 
-    // display the appliances in the appliances zone according to the recipes displayed in the 'recipes' section
+    // display system for the appliances
     static fillAppliances(appliances) {
         // console.log(appliancesExample)
         let ul = document.createElement('ul');
@@ -41,7 +41,7 @@ export default class Appliances {
         });
     }
 
-    // allows to search for the appliances in the input from the appliances present in the recipes displayed
+    // allows system for search input's appliances
     static searchInput(appliances) {
         document.getElementById('inputAppliances').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;

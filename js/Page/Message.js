@@ -4,7 +4,7 @@ export default class MessageAlert {
     static resultMessage = document.getElementById('resultMessage');
     static resultSpan = document.querySelector('#resultMessage > span');
 
-    // displays the message with the number of recipes corresponding to the search
+    // display message alert true
     static buildResultMessageWithResult(recipes) {
         this.displayMessage();
         this.resultMessage.style.backgroundColor = '#c4dcff'
@@ -13,7 +13,7 @@ export default class MessageAlert {
         return this;
     }
 
-    // displays the message indicating to the user that no recipe matches the search
+    // displays the message alert false
     static buildResultMessageWithNoResult() {
         this.displayMessage();
         this.resultMessage.style.backgroundColor = '#FFE9A5';
@@ -21,12 +21,12 @@ export default class MessageAlert {
         return this;
     }
 
-    // displays the message containing the number of recipes
+    // message with number of recipes
     static displayMessage() {
         return this.resultMessage.style.display = 'flex';
     }
 
-    // disappear the message containing the number of recipes
+    // remove message
     static hideMessage() {
         return this.resultMessage.style.display = 'none';
     }

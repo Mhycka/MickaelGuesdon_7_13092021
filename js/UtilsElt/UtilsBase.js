@@ -36,7 +36,7 @@ export default class Utils {
         return elt.innerHTML = '';
     }
 
-    // Collect all the ingredients/appliance/ustensils, and sort them alphabetically
+    // Collect all recipes of categories
     static sortByTitle(array) {
         let arrayNoSort = [...new Set(array)];
         let arraySort = arrayNoSort.sort((a, b) => {

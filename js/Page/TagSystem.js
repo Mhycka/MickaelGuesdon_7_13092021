@@ -13,7 +13,7 @@ export default class Tags {
     static hiddenAppliancesFilter = document.querySelector('#appliancesHide');
     static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
 
-    // displays a badge containing the tag of the ingredient/appliance/ustensil that the user has selected
+    // displays a badge whose selected
     static buildTags(elt, tag) {
         this.pushDownButtonsFilter();
         this.displayTag(elt);
@@ -30,21 +30,19 @@ export default class Tags {
         return elt.innerHTML = tag + ` <i class='far fa-times-circle'></i>`;
     }
 
-    // remove the tag and replace the ingredient/appliance/ustensil buttons
+    // remove the tag
     static hideTag(elt) {
         this.pushUpButtonsFilter();
 
         return elt.style.display = 'none';
     }
 
-    // push down the ingredient/appliance/ustensil buttons
     static pushDownButtonsFilter() {
         this.hiddenIngredientsFilter.style.top = '0rem';
         this.hiddenAppliancesFilter.style.top = '0rem';
         this.hiddenUstensilesFilter.style.top = '0rem';
     }
 
-    // push up the ingredient/appliance/ustensil buttons
     static pushUpButtonsFilter() {
         this.hiddenIngredientsFilter.style.top = '0rem';
         this.hiddenAppliancesFilter.style.top = '0rem';

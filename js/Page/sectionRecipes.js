@@ -10,14 +10,14 @@ export default class sectionRecipesCard {
         });
     }
 
-    // build each recipe
+    // build system for each recipe
     static buildRecipe(collection) {
         let section = document.getElementById('mainContent');
         // console.log(section)
         return section.appendChild(this.createSectionElt(collection));
     }
 
-    // create the article which will contain the information of each recipe
+    // create the article with informations
     static createSectionElt(collection) {
         let createSection = document.createElement('div');
         let dataFilterIngredients = collection.ingredients.map(element => Utils.normalizeText(element.ingredient));
