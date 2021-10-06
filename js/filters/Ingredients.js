@@ -22,7 +22,7 @@ export default class Ingredients {
         this.filterTags(recipes);
     }
 
-    // display the ingredients in the ingredients zone according to the recipes displayed in the 'recipes' section
+    // display system for ingredients
     static fillIngredients(ingredients) {
         let ul = document.createElement('ul');
         ul.classList.add('listUlIng');
@@ -38,7 +38,7 @@ export default class Ingredients {
         });
     }
 
-    // allows to search for the ingredients in the input from the ingredients present in the recipes displayed
+    // allows systems to search ingredients
     static searchInput(ingredients) {
         document.getElementById('inputIngredients').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;

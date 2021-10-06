@@ -8,27 +8,21 @@ import MessageAlert from './Message.js';
 import Ustensils from '../filters/Ustensils.js';
 
 export default class builder {
+    // Build Section before search system
     static init() {
-        // Build Section with all Recipes before Search
         sectionRecipesCard.buildResult(recipesData);
         MessageAlert.hideMessage();
-        // Ingredients logic
         Ingredients.init(Logic.getAllIngredients(recipesData), recipesData);
-        // Appliances logic
         Appliances.init(Logic.getAllAppliances(recipesData), recipesData);
-        // Ustensils logic
         Ustensils.init(Logic.getAllUstensils(recipesData), recipesData);
     }
 
+    // Build Section after search system
     static initSearch(result) {
-        // Build Section after Search
         sectionRecipesCard.buildResult(result.recipesMatched);
         MessageAlert.buildResultMessageWithResult(result.recipesMatched);
-        // Ingredients logic
         Ingredients.init(result.ingredients, result.recipesMatched);
-        // Appliances logic
         Appliances.init(result.appliances, result.recipesMatched);
-        // Ustensils logic
         Ustensils.init(result.ustensils, result.recipesMatched);
     }
 }

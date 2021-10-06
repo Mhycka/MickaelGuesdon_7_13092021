@@ -4,19 +4,12 @@ export default class Logic {
     // get all the ingredients to make them appear by default, before searching
     static getAllIngredients(ing) {
         let ingredients = [];
-        // ing.forEach((recipe) => {
-        //     recipe.ingredients.forEach((ing) => {
-        //         if (!ingredients.includes(ing.ingredient.toLowerCase()))
-        //             ingredients.push(ing.ingredient.toLowerCase());
-        //     });
-        // });
-        for(const recipe of ing){
-            // console.log(recipe.ingredients);
-            for(const ing of recipe.ingredients){
+        ing.forEach((recipe) => {
+            recipe.ingredients.forEach((ing) => {
                 if (!ingredients.includes(ing.ingredient.toLowerCase()))
                     ingredients.push(ing.ingredient.toLowerCase());
-            }
-        }
+            });
+        });
         return ingredients;
     }
 

@@ -23,7 +23,7 @@ export default class Ustensils {
         return this;
     }
 
-    // display the ustensils in the ustensils zone according to the recipes displayed in the 'recipes' section
+    // display system for ustensils
     static fillUstensils(ustensils) {
         let ul = document.createElement('ul');
         ul.classList.add('listUlUst');
@@ -39,7 +39,7 @@ export default class Ustensils {
         });
     }
 
-    // allows to search for the ustensils in the input from the ustensils present in the recipes displayed
+    // allows to search input's ustensils
     static searchInput(ustensils) {
         document.getElementById('inputUstensiles').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;
