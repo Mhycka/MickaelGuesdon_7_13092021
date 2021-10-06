@@ -1,0 +1,341 @@
+#tagsBadges {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 2.5rem;
+
+    span {
+        align-items: center;
+        border-radius: .25rem;
+        color: #fff;
+        cursor: default;
+        display: none;
+        justify-content: space-between;
+        margin: 0.5rem 1rem .25rem 0;
+        padding: .5rem 1rem;
+        width: fit-content;
+    }
+
+    #ingredientTag {
+        background-color: $color-ingredients;
+
+        i{
+            margin-left: 0.5rem;
+    
+            &:hover {
+                color: $color-ingredientsHover;
+            }
+        }
+    }
+
+    #appliancesTag {
+        background-color: $color-appliances;
+
+        i{
+            margin-left: 0.5rem;
+    
+            &:hover {
+                color: $color-appliancesHover;
+            }
+        }
+    }
+
+    #ustensileTag{
+        background-color: $color-ustensiles;
+
+        i{
+            margin-left: 0.5rem;
+    
+            &:hover {
+                color: $color-ustensilesHover;
+            }
+        }
+    } 
+}
+
+#filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 1rem auto;
+    padding: 0;
+    width: 95%;
+}
+
+#ingredientsElt{
+    margin-right: 2rem;
+    position: relative;
+
+    button{
+        align-items: center;
+        border: none;
+        border-radius: .3125rem;
+        color: #ffff;
+        background-color: $color-ingredients;
+        cursor: pointer;
+        display: flex;
+        font-size: 1.125rem;
+        height: 4.3125rem;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: linear .3s;
+        width: 11rem;
+
+        &:hover {
+            background-color: $color-ingredientsHover;
+        }
+    }
+
+    #ingredientsHide {
+        border-radius: 5px;
+        color: #ffff;
+        background-color: $color-ingredients;
+        display: none;
+        position: absolute;
+        top: 0rem;
+        width: 35rem;
+        z-index: 10;
+
+        #closeIngredientsFilter {
+            font-size: 1.125rem;
+            left: 32rem;
+            position: absolute;
+            top: 2.8rem;
+        }
+    }
+}
+
+#appliancesElt{
+    margin-right: 2rem;
+    position: relative;
+
+    button{
+        align-items: center;
+        border: none;
+        border-radius: .3125rem;
+        color: #ffff;
+        background-color: $color-appliances;
+        cursor: pointer;
+        display: flex;
+        font-size: 1.125rem;
+        height: 4.3125rem;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: linear .3s;
+        width: 11rem;
+
+        &:hover {
+            background-color: $color-appliancesHover;
+        }
+    }
+
+    #appliancesHide {
+        border-radius: 5px;
+        color: #ffff;
+        background-color: $color-appliances;
+        display: none;
+        position: absolute;
+        top: 0rem;
+        width: 35rem;
+        z-index: 10;
+
+        #closeAppliancesFilter{
+            font-size: 1.125rem;
+            left: 32rem;
+            position: absolute;
+            top: 2.8rem;
+        }
+    }
+}
+
+#ustensilesElt{
+    margin-right: 2rem;
+    position: relative;
+
+    button{
+        align-items: center;
+        border: none;
+        border-radius: .3125rem;
+        color: #ffff;
+        background-color: $color-ustensiles;
+        cursor: pointer;
+        display: flex;
+        font-size: 1.125rem;
+        height: 4.3125rem;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        transition: linear .3s;
+        width: 11rem;
+
+        &:hover {
+            background-color: $color-ustensilesHover;
+        }
+    }
+
+    #ustensilesHide {
+        border-radius: 5px;
+        color: #ffff;
+        background-color: $color-ustensiles;
+        display: none;
+        position: absolute;
+        top: 0rem;
+        width: 35rem;
+        z-index: 10;
+
+        #closeUstensilesFilter {
+            font-size: 1.125rem;
+            left: 32rem;
+            position: absolute;
+            top: 2.8rem;
+        }
+    }
+}
+
+.listUlIng{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: .5rem;
+
+    li{
+        font-size: 1.21rem;
+        overflow: hidden;
+        padding: .5rem 1rem;
+        text-align: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 9rem;
+
+        &:hover {
+            background-color: $color-ingredientsHover;
+            color: #fff;
+        }
+
+        .list-ustensiles {
+            .selected {
+                background-color: #000;
+            }
+        }
+    }
+}
+
+.listUlApp{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: .5rem;
+
+    li{
+        font-size: 1.21rem;
+        overflow: hidden;
+        padding: .5rem 1rem;
+        text-align: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 9rem;
+
+        &:hover {
+            background-color: $color-appliancesHover;
+            color: #fff;
+        }
+        
+        .list-ustensiles {
+            .selected {
+                background-color: #000;
+            }
+        }
+    }
+}
+
+.listUlUst{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: .5rem;
+
+    li{
+        font-size: 1.21rem;
+        overflow: hidden;
+        padding: .5rem 1rem;
+        text-align: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 9rem;
+
+        &:hover {
+            background-color: $color-ustensilesHover;
+            color: #fff;
+        }
+
+        .list-ustensiles {
+            .selected {
+                background-color: #000;
+            }
+        }
+    }
+}
+
+#inputIngredients {
+    border: none;
+    border-radius: 5px;
+    background-color: $color-ingredients;
+    color: #ffff;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    height: 4.3125rem;
+    outline: none;
+    padding: 2rem;
+    width: 100%;
+
+    &::placeholder{
+        color: #ffff;
+        opacity: 1;
+    }
+}
+
+#inputAppliances {
+    border: none;
+    border-radius: 5px;
+    color: #ffff;
+    background-color: $color-appliances;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    height: 4.3125rem;
+    outline: none;
+    padding: 2rem;
+    width: 100%;
+
+    &::placeholder{
+        color: #ffff;
+        opacity: 1;
+    }
+} 
+
+#inputUstensiles {
+    border: none;
+    border-radius: 5px;
+    color: #ffff;
+    background-color: $color-ustensiles;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    height: 4.3125rem;
+    outline: none;
+    padding: 2rem;
+    width: 100%;
+
+    &::placeholder {
+        color: #ffff;
+        opacity: 1;
+    }    
+}

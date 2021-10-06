@@ -1,0 +1,132 @@
+/*-----------------HOME PAGE------------------*/
+@media (max-width: 576px) 
+{ 
+    label {
+        display: initial;
+    }
+
+    #filter{
+        justify-content: space-around;
+    }
+
+    #searchBar{
+        i {
+            font-size: 1.2rem;
+            top: 2.5rem;
+        }
+    }
+
+    #ingredientsElt {
+        margin-right: 0;
+
+        #ingredientsHide{
+            right: -4rem;
+            width: 19rem;
+
+            #closeIngredientsFilter{
+                left: 17rem;
+                top: 1.7rem;
+            }
+        }
+
+        button {
+            transition: none;
+
+            &:hover {
+                background-color: $color-ingredients;
+            }
+        }
+    }
+
+    #appliancesElt{
+        margin-right: 0;
+
+        #appliancesHide{
+            right: -4rem;
+            width: 19rem;
+
+            #closeAppliancesFilter{
+                left: 17rem;
+                top: 1.7rem;
+            }    
+        }
+
+        
+        button {
+            transition: none;
+
+            &:hover{
+                background-color: $color-appliances;
+            }
+        }
+    }
+
+    #ustensilesElt {
+        margin-right: 0;
+
+        #ustensilesHide {
+            right: -4rem;
+            width: 19rem;
+
+            #closeUstensilesFilter{
+                left: 17rem;
+                top: 1.7rem;
+            }
+        }
+
+        button {
+            transition: none;
+
+            &:hover{
+                background-color: $color-ustensiles;
+            }
+        }
+    }
+
+    #mainContent {
+        .articleRecipes{
+            .recipeTitle{
+                h2{
+                    margin: 0;
+                    font-size: 1rem;
+                }
+            }
+
+            .recipeInfo{
+                .recipeInstructions{
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) 
+{
+    #mainContent {
+        .articleRecipes{
+            width: 21rem;
+            .recipeTitle{
+                h2{
+                    margin: 0;
+                    font-size: 1rem;
+                }
+            }
+
+            .recipeInfo{
+                .recipeInstructions{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1370px)
+{
+    #mainContent {
+        .articleRecipes{
+            width: 21rem;
+        }
+    }
+}
