@@ -1,7 +1,6 @@
 // 'use strict';
 
 import Appliances from '../filters/Appliances.js';
-
 import Logic from '../UtilsElt/Logic.js';
 import sectionRecipesCard from './sectionRecipes.js';
 import Ingredients from '../filters/Ingredients.js';
