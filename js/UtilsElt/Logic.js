@@ -1,7 +1,8 @@
 // 'use strict';
 
 export default class Logic {
-    // get all the ingredients to make them appear by default, before searching
+    // get all the recipes for each categories for create by default
+
     static getAllIngredients(ing) {
         let ingredients = [];
         ing.forEach((recipe) => {
@@ -13,7 +14,6 @@ export default class Logic {
         return ingredients;
     }
 
-    // get all the appliances to make them appear by default, before searching
     static getAllAppliances(app) {
         let appliances = [];
         app.forEach((recipe) => {
@@ -23,7 +23,6 @@ export default class Logic {
         return appliances;
     }
 
-    // get all the ustensils to make them appear by default, before searching
     static getAllUstensils(ust) {
         let ustensils = [];
         ust.forEach((recipe) => {
@@ -35,4 +34,3 @@ export default class Logic {
         return ustensils;
     }
 }
-
