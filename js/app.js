@@ -12,7 +12,7 @@ document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
     let valueSearch = key.target.value;
     if (Utils.isValid(valueSearch)) {
         let result = Search.searchMainInput(valueSearch);
-        if (result.recipesMatched.length === 0) {
+        if (result.recipesMatchedArray.length === 0) {
             return MessageAlert.buildResultMessageWithNoResult();
         }
         Utils.clearRecipesSection();

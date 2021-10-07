@@ -19,10 +19,10 @@ export default class builder {
 
     // Build Section after search system
     static initSearch(result) {
-        sectionRecipesCard.buildResult(result.recipesMatched);
-        MessageAlert.buildResultMessageWithResult(result.recipesMatched);
-        Ingredients.init(result.ingredients, result.recipesMatched);
-        Appliances.init(result.appliances, result.recipesMatched);
-        Ustensils.init(result.ustensils, result.recipesMatched);
+        sectionRecipesCard.buildResult(result.recipesMatchedArray);
+        MessageAlert.buildResultMessageWithResult(result.recipesMatchedArray);
+        Ingredients.init(result.ingredients, result.recipesMatchedArray);
+        Appliances.init(result.appliances, result.recipesMatchedArray);
+        Ustensils.init(result.ustensils, result.recipesMatchedArray);
     }
 }

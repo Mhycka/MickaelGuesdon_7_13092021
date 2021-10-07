@@ -5,18 +5,18 @@ import Utils from '../UtilsElt/UtilsBase.js';
 
 export default class Search {
     static searchMainInput(value) {
-        let recipesMatched = [];
+        let recipesMatchedArray = [];
 
         recipesData.forEach(recipe => {
             if (Utils.normalizeText(recipe.name).includes(Utils.normalizeText(value)) || Utils.normalizeText(recipe.description).includes(Utils.normalizeText(value)) || recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(value))) {
-                recipesMatched.push(recipe);
+                recipesMatchedArray.push(recipe);
             };
         });
         return {
-            'recipesMatched': recipesMatched,
-            'ingredients': Logic.getAllIngredients(recipesMatched),
-            'appliances': Logic.getAllAppliances(recipesMatched),
-            'ustensils': Logic.getAllUstensils(recipesMatched),
+            'recipesMatchedArray': recipesMatchedArray,
+            'ingredients': Logic.getAllIngredients(recipesMatchedArray),
+            'appliances': Logic.getAllAppliances(recipesMatchedArray),
+            'ustensils': Logic.getAllUstensils(recipesMatchedArray),
         };
     }
 
