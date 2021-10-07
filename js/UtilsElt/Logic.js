@@ -11,7 +11,6 @@ export default class Logic {
         //     });
         // });
         for(const recipe of ing){
-            // console.log(recipe.ingredients);
             for(const ing of recipe.ingredients){
                 if (!ingredients.includes(ing.ingredient.toLowerCase()))
                     ingredients.push(ing.ingredient.toLowerCase());
@@ -22,21 +21,32 @@ export default class Logic {
 
     static getAllAppliances(app) {
         let appliances = [];
-        app.forEach((recipe) => {
+        // app.forEach((recipe) => {
+        //     if (!appliances.includes(recipe.appliance.toLowerCase()))
+        //         appliances.push(recipe.appliance.toLowerCase());
+        // });
+        for(const recipe of app){
             if (!appliances.includes(recipe.appliance.toLowerCase()))
                 appliances.push(recipe.appliance.toLowerCase());
-        });
+        }
         return appliances;
     }
 
     static getAllUstensils(ust) {
         let ustensils = [];
-        ust.forEach((recipe) => {
-            recipe.ustensils.forEach((ustensil) => {
-                if (!ustensils.includes(ustensil.toLowerCase()))
-                    ustensils.push(ustensil.toLowerCase());
-            });
-        });
+        // console.log(ust)
+        // ust.forEach((recipe) => {
+        //     recipe.ustensils.forEach((ustensil) => {
+        //         if (!ustensils.includes(ustensil.toLowerCase()))
+        //             ustensils.push(ustensil.toLowerCase());
+        //     });
+        // });
+        for(const recipe of ust){
+            for(const ust of recipe.ustensils){
+                if (!ustensils.includes(ust.toLowerCase()))
+                    ustensils.push(ust.toLowerCase());  
+            }        
+        }
         return ustensils;
     }
 }
