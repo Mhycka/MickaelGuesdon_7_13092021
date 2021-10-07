@@ -6,12 +6,16 @@ import Utils from '../UtilsElt/UtilsBase.js';
 export default class Search {
     static searchMainInput(value) {
         let recipesMatchedArray = [];
-
-        recipesData.forEach(recipe => {
+        // recipesData.forEach(recipe => {
+        //     if (Utils.normalizeText(recipe.name).includes(Utils.normalizeText(value)) || Utils.normalizeText(recipe.description).includes(Utils.normalizeText(value)) || recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(value))) {
+        //         recipesMatchedArray.push(recipe);
+        //     };
+        // });
+        for (const recipe of recipesData){
             if (Utils.normalizeText(recipe.name).includes(Utils.normalizeText(value)) || Utils.normalizeText(recipe.description).includes(Utils.normalizeText(value)) || recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(value))) {
                 recipesMatchedArray.push(recipe);
-            };
-        });
+            }
+        }
         return {
             'recipesMatchedArray': recipesMatchedArray,
             'ingredients': Logic.getAllIngredients(recipesMatchedArray),
@@ -19,6 +23,10 @@ export default class Search {
             'ustensils': Logic.getAllUstensils(recipesMatchedArray),
         };
     }
+    
+
+        
+    
 
      // search by each input 
     static searchInputFilters(collection, value) {
