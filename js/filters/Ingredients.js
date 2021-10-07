@@ -32,7 +32,7 @@ export default class Ingredients {
             let listIngredients = document.createElement('li');
             
             ul.appendChild(listIngredients);
-            listIngredients.innerHTML = `${Utils.upperText(ingredient)}`
+            listIngredients.innerHTML = `${ingredient}`
             listIngredients.classList.add('list-ingredients');
             listIngredients.setAttribute('data-filter', `${ingredient}`);
         });
@@ -64,7 +64,7 @@ export default class Ingredients {
                     document.querySelector("#openIngredientsFilter"),
                     document.querySelector("#ingredientsHide"))
                 Tags
-                    .buildTags(ingredientTag, Utils.upperText(event.target.getAttribute('data-filter')))
+                    .buildTags(ingredientTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#ingredientTag > i"), event, ingredientTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
                 Utils.clearRecipesSection();

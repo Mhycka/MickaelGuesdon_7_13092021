@@ -34,7 +34,7 @@ export default class Appliances {
         appliances.forEach((appliances) => {
             let listAppliances = document.createElement('li');
 
-            listAppliances.innerHTML = `${Utils.upperText(appliances)}`
+            listAppliances.innerHTML = `${appliances}`
             ul.appendChild(listAppliances);
             listAppliances.classList.add('list-Appliances');
             listAppliances.setAttribute('data-filter', `${appliances}`);
@@ -69,7 +69,7 @@ export default class Appliances {
                     document.querySelector("#openAppliancesFilter"),
                     document.querySelector("#appliancesHide"))
                 Tags
-                    .buildTags(AppliancesTag, Utils.upperText(event.target.getAttribute('data-filter')))
+                    .buildTags(AppliancesTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#appliancesTag > i"), event, AppliancesTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByAppTags(recipes, selected));
                 Utils.clearRecipesSection();
