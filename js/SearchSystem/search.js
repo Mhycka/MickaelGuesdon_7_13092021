@@ -31,53 +31,69 @@ export default class Search {
      // search by each input 
     static searchInputFilters(collection, value) {
         let resultInput = [];
-        collection.forEach(elt => {
+        // collection.forEach(elt => {
+        //     if (Utils.normalizeText(elt).includes(Utils.normalizeText(value))) {
+        //         resultInput.push(elt);
+        //     };
+        // });
+        for (const elt of collection){
             if (Utils.normalizeText(elt).includes(Utils.normalizeText(value))) {
                 resultInput.push(elt);
-            };
-        });
-
+            }
+        }
         return resultInput;
     }
 
     // ingredients tag
     static searchByIngTags(recipes, tagIng) {
-        let resultIng = [];
-
-        recipes.forEach(recipe => {
+        let resultIngredients = [];
+        // recipes.forEach(recipe => {
+        //     if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng))) {
+        //         resultIngredients.push(recipe);
+        //     }
+        // });
+        for(const recipe of recipes){
             if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng))) {
-                resultIng.push(recipe);
+                resultIngredients.push(recipe);
             }
-        });
-
-        return resultIng;
+        }
+        return resultIngredients;
     }
 
      // appliances tag
     static searchByAppTags(recipes, tagApp) {
-        let resultApp = [];
-
-        recipes.forEach(recipe => {
+        let resultAppliances = [];
+        // recipes.forEach(recipe => {
+        //     if (Utils.normalizeText(recipe.appliance).includes(tagApp)) {
+        //         resultAppliances.push(recipe);
+        //     }
+        // });
+        for(const recipe of recipes) {
             if (Utils.normalizeText(recipe.appliance).includes(tagApp)) {
-                resultApp.push(recipe);
+                resultAppliances.push(recipe);
             }
-        });
-
-        return resultApp;
+        }
+        return resultAppliances;
     }
 
     // ustensils tag
     static searchByUstTags(recipes, tagUst) {
-        let resultUst = [];
+        let resultUstensils = [];
 
-        recipes.forEach(recipe => {
-            recipe.ustensils.forEach(ust => {
+        // recipes.forEach(recipe => {
+        //     recipe.ustensils.forEach(ust => {
+        //         if (Utils.normalizeText(ust).includes(tagUst)) {
+        //             resultUstensils.push(recipe);
+        //         }
+        //     });
+        // });
+        for(const recipe of recipes){
+            for(const ust of recipe.ustensils) {
                 if (Utils.normalizeText(ust).includes(tagUst)) {
-                    resultUst.push(recipe);
+                    resultUstensils.push(recipe);
                 }
-            });
-        });
-
-        return resultUst;
+            }
+        }
+        return resultUstensils;
     }
 }

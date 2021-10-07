@@ -56,9 +56,11 @@ export default class Ingredients {
 
         document.querySelector('#ingredientsExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
-
+            
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
+                console.log(event.target)
+                console.log(selected)
                 selected.push(event.target.getAttribute('data-filter'));
                 button.hideButtonsOnClick(document.querySelector("#ingredientsElt > button"),
                     document.querySelector("#openIngredientsFilter"),
