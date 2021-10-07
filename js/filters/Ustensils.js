@@ -32,7 +32,7 @@ export default class Ustensils {
         ustensils.forEach((ustensils) => {
             let listUstensils = document.createElement('li');
 
-            listUstensils.innerHTML = `${Utils.upperText(ustensils)}`
+            listUstensils.innerHTML = `${ustensils}`
             ul.appendChild(listUstensils);
             listUstensils.classList.add('list-ustensiles');
             listUstensils.setAttribute('data-filter', `${ustensils}`);
@@ -65,7 +65,7 @@ export default class Ustensils {
                     document.querySelector("#openUstensilesFilter"),
                     document.querySelector("#ustensilesHide"))
                 Tags
-                    .buildTags(ustensileTag, Utils.upperText(event.target.getAttribute('data-filter')))
+                    .buildTags(ustensileTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(document.querySelector("#ustensileTag > i"), event, ustensileTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearRecipesSection();
