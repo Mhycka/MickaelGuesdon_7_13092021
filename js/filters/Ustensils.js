@@ -20,7 +20,6 @@ export default class Ustensils {
         this.fillUstensils(Utils.sortByTitle(ustensils));
         this.searchInput(ustensils);
         this.filterTags(recipes);
-        return this;
     }
 
    // display system for ustensils
@@ -32,8 +31,8 @@ export default class Ustensils {
         ustensils.forEach((ustensils) => {
             let listUstensils = document.createElement('li');
 
-            listUstensils.innerHTML = `${ustensils}`
             ul.appendChild(listUstensils);
+            listUstensils.innerHTML = `${ustensils}`
             listUstensils.classList.add('list-ustensiles');
             listUstensils.setAttribute('data-filter', `${ustensils}`);
         });
@@ -53,7 +52,7 @@ export default class Ustensils {
 
     static filterTags(recipes) {
         let selected = [];
-        let ustensileTag = document.getElementById('ustensileTag');
+        let ustensileTag = document.getElementById('tagsBadges');
 
         document.querySelector('#ustensilesExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
@@ -66,7 +65,7 @@ export default class Ustensils {
                     document.querySelector("#ustensilesHide"))
                 Tags
                     .buildTags(ustensileTag,(event.target.getAttribute('data-filter')))
-                    .removeTagsOnClick(document.querySelector("#ustensileTag > i"), event, ustensileTag, recipes);
+                    // .removeTagsOnClick(document.querySelector("#ustensileTag > i"), event, ustensileTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByUstTags(recipes, selected));

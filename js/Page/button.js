@@ -8,7 +8,6 @@ export default class button {
 
     static launchButtons(btn, open, close, hiddenPart) {
         btn.addEventListener('click', () => {
-            // console.log(ingredients)
             this.displayBtn(btn);
             this.hideArrow(open);
             this.displayHidden(hiddenPart);

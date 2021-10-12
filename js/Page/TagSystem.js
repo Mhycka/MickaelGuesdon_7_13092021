@@ -14,26 +14,50 @@ export default class Tags {
     static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
 
     // displays a badge whose selected
-    static buildTags(elt, tag) {
+    static buildTags(elt, tag, recipes) {
         this.pushDownButtonsFilter();
-        this.displayTag(elt);
-        this.fillTag(elt, tag);
+        // this.displayTag(elt);
+        this.fillTag(elt, tag, recipes);
         return this;
     }
 
-    static displayTag(elt) {
-        return elt.style.display = 'flex';
-    }
+    // static displayTag(elt) {
+    //     if(elt.style.display ='none') {
+    //         return elt.style.display = 'flex';
+    //     }
+    // }
 
     // fill in the selected tag
     static fillTag(elt, tag) {
-        return elt.innerHTML = tag + ` <i class='far fa-times-circle'></i>`;
+        let ingredientsList = document.querySelectorAll('.listUlIng > li');
+        let appliancesList = document.querySelectorAll('.listUlApp > li');
+        let ustensilsList = document.querySelectorAll('.listUlUst > li');
+
+        ingredientsList.forEach((ingredient) => {
+            if(ingredient.hasAttribute('data-filter') && ingredient.classList.contains('selected')) {
+                return elt.innerHTML += `<div class="ingredientTag">${tag} <i class='far fa-times-circle'></i></div>`;
+    
+            }
+        });
+
+        appliancesList.forEach((appliance) => {
+            if(appliance.hasAttribute('data-filter') && appliance.classList.contains('selected')) {
+                return elt.innerHTML += `<div class="appliancesTag">${tag} <i class='far fa-times-circle'></i></div>`;
+            }
+            
+        });
+
+        ustensilsList.forEach((ustensil) => {
+            if(ustensil.hasAttribute('data-filter') && ustensil.classList.contains('selected')) {
+                return elt.innerHTML += `<div class="ustensilsTag">${tag} <i class='far fa-times-circle'></i></div>`;
+            }
+        })
+
     }
 
     // remove the tag
     static hideTag(elt) {
         this.pushUpButtonsFilter();
-
         return elt.style.display = 'none';
     }
 
@@ -51,8 +75,9 @@ export default class Tags {
 
     static removeTagsOnClick(tag, event, eltBadge, recipes) {
         tag.addEventListener('click', () => {
-            console.log(selected)
+            // console.log(selected)
             this.resetSection(event, eltBadge, recipes);
+
             // location.reload();
         })
     }

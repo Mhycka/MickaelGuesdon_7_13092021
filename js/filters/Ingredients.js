@@ -52,22 +52,22 @@ export default class Ingredients {
 
     static filterTags(recipes) {
         let selected = [];
-        let ingredientTag = document.getElementById('ingredientTag');
+        let ingredientTag = document.getElementById('tagsBadges');
+        // console.log(recipes)
 
         document.querySelector('#ingredientsExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
+            // console.log(event.target)
             
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
-                console.log(event.target)
-                console.log(selected)
                 selected.push(event.target.getAttribute('data-filter'));
                 button.hideButtonsOnClick(document.querySelector("#ingredientsElt > button"),
                     document.querySelector("#openIngredientsFilter"),
                     document.querySelector("#ingredientsHide"))
                 Tags
                     .buildTags(ingredientTag,(event.target.getAttribute('data-filter')))
-                    .removeTagsOnClick(document.querySelector("#ingredientTag > i"), event, ingredientTag, recipes);
+                    // .removeTagsOnClick(document.querySelector("#ingredientTag > i"), event, ingredientTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
                 Utils.clearRecipesSection();
                 let result = Search.searchByIngTags(recipes, selected);

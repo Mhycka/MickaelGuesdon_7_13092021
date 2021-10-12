@@ -52,10 +52,35 @@ export default class Search {
         //         resultIngredients.push(recipe);
         //     }
         // });
+        // console.log(recipes.length , tagIng)
         for(const recipe of recipes){
-            if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng))) {
-                resultIngredients.push(recipe);
+            // console.log(recipe)
+
+
+            //For par rapport au Tag (1 - 2...)
+                //recipe.ingredients.include(tag)
+                    //PUSH (AREFLEICHIR)
+
+            for(const elt of recipe.ingredients){
+                let test = Utils.normalizeText(elt.ingredient);
+                if( tagIng.includes(test)){
+                    // console.log(test )
+                    resultIngredients.push(recipe);
+                }
+                
+
+                // if (Utils.normalizeText(elt.ingredient).includes(tagIng) ) {
+               
+                //         resultIngredients.push(recipe);
+                //     }
             }
+            // recipe.ingredients.some(elt => {
+                
+            // })
+            // if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng) )) {
+               
+            //     resultIngredients.push(recipe);
+            // }
         }
         return resultIngredients;
     }
