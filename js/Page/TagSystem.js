@@ -32,33 +32,37 @@ export default class Tags {
         let ingredientsList = document.querySelectorAll('.listUlIng > li');
         let appliancesList = document.querySelectorAll('.listUlApp > li');
         let ustensilsList = document.querySelectorAll('.listUlUst > li');
+        
 
         ingredientsList.forEach((ingredient) => {
             if(ingredient.hasAttribute('data-filter') && ingredient.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="ingredientTag">${tag} <i class='far fa-times-circle'></i></div>`;
+                return elt.innerHTML += `<div class="ingredientTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
     
             }
         });
 
         appliancesList.forEach((appliance) => {
             if(appliance.hasAttribute('data-filter') && appliance.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="appliancesTag">${tag} <i class='far fa-times-circle'></i></div>`;
+                return elt.innerHTML += `<div class="appliancesTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
             
         });
 
         ustensilsList.forEach((ustensil) => {
             if(ustensil.hasAttribute('data-filter') && ustensil.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="ustensilsTag">${tag} <i class='far fa-times-circle'></i></div>`;
+                return elt.innerHTML += `<div class="ustensilsTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
         })
 
     }
 
     // remove the tag
-    static hideTag(elt) {
+    static hideTag() {
         this.pushUpButtonsFilter();
-        return elt.style.display = 'none';
+        let tag = document.getElementById("tagElt");
+        tag.remove();
+        // return elt.style.display = 'none';
+
     }
 
     static pushDownButtonsFilter() {
@@ -73,14 +77,18 @@ export default class Tags {
         this.hiddenUstensilesFilter.style.top = '0rem';
     }
 
-    static removeTagsOnClick(tag, event, eltBadge, recipes) {
-        tag.addEventListener('click', () => {
-            this.resetSection(event, eltBadge, recipes);
+    static removeTagsOnClick(event, eltBadge, recipes) {
+        let tagToClose = document.querySelectorAll('#tagElt');
+        tagToClose.forEach((tag) => {
+            tag.addEventListener('click', () => {
+                this.resetSection(event, eltBadge, recipes);
+            })
         })
     }
 
     static resetSection(event, eltBadge, recipes) {
         event.target.classList.remove('selected');
+        // console.log(event.target)
         this.hideTag(eltBadge);
         MessageAlert.buildResultMessageWithResult(recipes);
         Utils.clearRecipesSection();

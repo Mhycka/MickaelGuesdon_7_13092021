@@ -59,8 +59,6 @@ export default class Appliances {
 
         document.querySelector('#appliancesExample').addEventListener('click', (event) => {
             let classValue = event.target.classList.value;
-            // console.log(classValue)
-
 
             if (-1 === classValue.indexOf('selected')) {
                 event.target.classList.add('selected');
@@ -70,7 +68,7 @@ export default class Appliances {
                     document.querySelector("#appliancesHide"))
                 Tags
                     .buildTags(AppliancesTag,(event.target.getAttribute('data-filter')))
-                    .removeTagsOnClick(document.querySelector(".appliancesTag > i"), event, AppliancesTag, recipes);
+                    .removeTagsOnClick(event, AppliancesTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByAppTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByAppTags(recipes, selected));

@@ -47,12 +47,16 @@ export default class Search {
     // ingredients tag
     static searchByIngTags(recipes, tagIng) {
         let resultIngredients = [];
+        // console.log(tagIng)
+        // console.log(recipes)
+
         // recipes.forEach(recipe => {
         //     if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng))) {
         //         resultIngredients.push(recipe);
         //     }
         // });
         // console.log(recipes.length , tagIng)
+
         for(const recipe of recipes){
             // console.log(recipe)
 
@@ -60,6 +64,8 @@ export default class Search {
             //For par rapport au Tag (1 - 2...)
                 //recipe.ingredients.include(tag)
                     //PUSH (AREFLEICHIR)
+
+
 
             for(const elt of recipe.ingredients){
                 let test = Utils.normalizeText(elt.ingredient);
@@ -74,6 +80,7 @@ export default class Search {
                 //         resultIngredients.push(recipe);
                 //     }
             }
+
             // recipe.ingredients.some(elt => {
                 
             // })
@@ -82,6 +89,7 @@ export default class Search {
             //     resultIngredients.push(recipe);
             // }
         }
+        
         return resultIngredients;
     }
 
