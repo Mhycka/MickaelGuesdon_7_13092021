@@ -65,7 +65,7 @@ export default class Ustensils {
                     document.querySelector("#ustensilesHide"))
                 Tags
                     .buildTags(ustensileTag,(event.target.getAttribute('data-filter')))
-                    // .removeTagsOnClick(document.querySelector("#ustensileTag > i"), event, ustensileTag, recipes);
+                    .removeTagsOnClick(document.querySelector(".ustensilsTag > i"), event, ustensileTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByUstTags(recipes, selected));

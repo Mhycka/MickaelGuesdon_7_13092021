@@ -70,7 +70,7 @@ export default class Appliances {
                     document.querySelector("#appliancesHide"))
                 Tags
                     .buildTags(AppliancesTag,(event.target.getAttribute('data-filter')))
-                    // .removeTagsOnClick(document.querySelector("#appliancesTag > i"), event, AppliancesTag, recipes);
+                    .removeTagsOnClick(document.querySelector(".appliancesTag > i"), event, AppliancesTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByAppTags(recipes, selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByAppTags(recipes, selected));

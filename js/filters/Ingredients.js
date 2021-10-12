@@ -67,7 +67,7 @@ export default class Ingredients {
                     document.querySelector("#ingredientsHide"))
                 Tags
                     .buildTags(ingredientTag,(event.target.getAttribute('data-filter')))
-                    // .removeTagsOnClick(document.querySelector("#ingredientTag > i"), event, ingredientTag, recipes);
+                    .removeTagsOnClick(document.querySelector(".ingredientTag > i"), event, ingredientTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
                 Utils.clearRecipesSection();
                 let result = Search.searchByIngTags(recipes, selected);
