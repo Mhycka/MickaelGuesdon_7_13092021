@@ -1,9 +1,9 @@
 // 'use strict';
 
 export default class button {
-    static btnIng = document.querySelector("#ingredientsElt > button");
-    static btnApp = document.querySelector("#appliancesElt > button");
-    static btnUst = document.querySelector("#ustensilesElt > button");
+    static btnIng = document.querySelector("#ingredientElt > button");
+    static btnApp = document.querySelector("#applianceElt > button");
+    static btnUst = document.querySelector("#ustensilElt > button");
 
 
     static launchButtons(btn, open, close, hiddenPart) {

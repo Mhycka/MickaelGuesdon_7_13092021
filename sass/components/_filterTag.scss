@@ -31,7 +31,7 @@
         }
     }
 
-    .appliancesTag {
+    .applianceTag {
         background-color: $color-appliances;
         color: #fff;
         padding: 0.6rem;
@@ -47,7 +47,7 @@
         }
     }
 
-    .ustensilsTag{
+    .ustensilTag{
         background-color: $color-ustensiles;
         color: #fff;
         padding: 0.6rem;
@@ -73,7 +73,7 @@
     width: 95%;
 }
 
-#ingredientsElt{
+#ingredientElt{
     margin-right: 2rem;
     position: relative;
 
@@ -98,7 +98,7 @@
         }
     }
 
-    #ingredientsHide {
+    #ingredientHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-ingredients;
@@ -108,7 +108,7 @@
         width: 35rem;
         z-index: 10;
 
-        #closeIngredientsFilter {
+        #closeIngredientFilter {
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
@@ -117,7 +117,7 @@
     }
 }
 
-#appliancesElt{
+#applianceElt{
     margin-right: 2rem;
     position: relative;
 
@@ -142,7 +142,7 @@
         }
     }
 
-    #appliancesHide {
+    #applianceHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-appliances;
@@ -152,7 +152,7 @@
         width: 35rem;
         z-index: 10;
 
-        #closeAppliancesFilter{
+        #closeApplianceFilter{
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
@@ -161,7 +161,7 @@
     }
 }
 
-#ustensilesElt{
+#ustensilElt{
     margin-right: 2rem;
     position: relative;
 
@@ -186,7 +186,7 @@
         }
     }
 
-    #ustensilesHide {
+    #ustensilHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-ustensiles;
@@ -196,7 +196,7 @@
         width: 35rem;
         z-index: 10;
 
-        #closeUstensilesFilter {
+        #closeUstensilFilter {
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
@@ -227,7 +227,7 @@
             color: #fff;
         }
 
-        .list-ustensiles {
+        .list-ustensil {
             .selected {
                 background-color: #000;
             }
@@ -287,7 +287,7 @@
             color: #fff;
         }
 
-        .list-ustensiles {
+        .list-ustensil {
             .selected {
                 background-color: #000;
             }
@@ -295,7 +295,7 @@
     }
 }
 
-#inputIngredients {
+#inputIngredient {
     border: none;
     border-radius: 5px;
     background-color: $color-ingredients;
@@ -314,7 +314,7 @@
     }
 }
 
-#inputAppliances {
+#inputAppliance {
     border: none;
     border-radius: 5px;
     color: #ffff;
@@ -333,7 +333,7 @@
     }
 } 
 
-#inputUstensiles {
+#inputUstensil {
     border: none;
     border-radius: 5px;
     color: #ffff;

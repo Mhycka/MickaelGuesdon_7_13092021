@@ -9,9 +9,9 @@ import Ustensils from '../filters/Ustensils.js';
 import Logic from '../UtilsElt/Logic.js';
 
 export default class Tags {
-    static hiddenIngredientsFilter = document.querySelector('#ingredientsHide');
-    static hiddenAppliancesFilter = document.querySelector('#appliancesHide');
-    static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
+    static hiddenIngredientsFilter = document.querySelector('#ingredientHide');
+    static hiddenAppliancesFilter = document.querySelector('#applianceHide');
+    static hiddenUstensilesFilter = document.querySelector('#ustensilHide');
 
     // displays a badge whose selected
     static buildTags(elt, tag) {
@@ -46,13 +46,13 @@ export default class Tags {
 
         appliancesList.forEach((appliance) => {
             if(appliance.hasAttribute('data-filter') && appliance.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="appliancesTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
+                return elt.innerHTML += `<div class="applianceTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
         });
 
         ustensilsList.forEach((ustensil) => {
             if(ustensil.hasAttribute('data-filter') && ustensil.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="ustensilsTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
+                return elt.innerHTML += `<div class="ustensilTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
         })
     }
@@ -93,11 +93,11 @@ export default class Tags {
         MessageAlert.buildResultMessageWithResult(recipes);
         Utils.clearRecipesSection();
         sectionRecipesCard.buildResult(recipes);
-        Utils.clearFilters(document.getElementById('ingredientsExample'));
+        Utils.clearFilters(document.getElementById('ingredientExample'));
         Ingredients.fillIngredients(Logic.getAllIngredients(recipes));
-        Utils.clearFilters(document.getElementById('appliancesExample'));
+        Utils.clearFilters(document.getElementById('applianceExample'));
         Appliances.fillAppliances(Logic.getAllAppliances(recipes));
-        Utils.clearFilters(document.getElementById('ustensilesExample'));
+        Utils.clearFilters(document.getElementById('ustensilExample'));
         Ustensils.fillUstensils(Logic.getAllUstensils(recipes));
     }
 }
