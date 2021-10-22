@@ -14,10 +14,10 @@ export default class Tags {
     static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
 
     // displays a badge whose selected
-    static buildTags(elt, tag, recipes) {
+    static buildTags(elt, tag) {
         this.pushDownButtonsFilter();
         // this.displayTag(elt);
-        this.fillTag(elt, tag, recipes);
+        this.fillTag(elt, tag);
         return this;
     }
 
@@ -27,17 +27,20 @@ export default class Tags {
     //     }
     // }
 
+
     // fill in the selected tag
     static fillTag(elt, tag) {
         let ingredientsList = document.querySelectorAll('.listUlIng > li');
         let appliancesList = document.querySelectorAll('.listUlApp > li');
         let ustensilsList = document.querySelectorAll('.listUlUst > li');
         
+        // console.log(elt)
+        // console.log(ingredientsList)
 
         ingredientsList.forEach((ingredient) => {
             if(ingredient.hasAttribute('data-filter') && ingredient.classList.contains('selected')) {
+                // ingredientsList.tag.remove();
                 return elt.innerHTML += `<div class="ingredientTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
-    
             }
         });
 
@@ -45,7 +48,6 @@ export default class Tags {
             if(appliance.hasAttribute('data-filter') && appliance.classList.contains('selected')) {
                 return elt.innerHTML += `<div class="appliancesTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
-            
         });
 
         ustensilsList.forEach((ustensil) => {
@@ -53,7 +55,6 @@ export default class Tags {
                 return elt.innerHTML += `<div class="ustensilsTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
             }
         })
-
     }
 
     // remove the tag
@@ -88,7 +89,6 @@ export default class Tags {
 
     static resetSection(event, eltBadge, recipes) {
         event.target.classList.remove('selected');
-        // console.log(event.target)
         this.hideTag(eltBadge);
         MessageAlert.buildResultMessageWithResult(recipes);
         Utils.clearRecipesSection();

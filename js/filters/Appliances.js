@@ -66,14 +66,16 @@ export default class Appliances {
                 button.hideButtonsOnClick(document.querySelector("#appliancesElt > button"),
                     document.querySelector("#openAppliancesFilter"),
                     document.querySelector("#appliancesHide"))
-                Tags
-                    .buildTags(AppliancesTag,(event.target.getAttribute('data-filter')))
+                Tags.buildTags(AppliancesTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(event, AppliancesTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByAppTags(recipes, selected));
+                    // MessageAlert.buildResultMessageWithResult(Search.searchByTags(recipes,'', selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByAppTags(recipes, selected));
+                    // sectionRecipesCard.buildResult(Search.searchByTags(recipes,'',selected));
                 Utils.clearFilters(this.appliancesEx);
                 this.fillAppliances(Utils.sortByTitle(Logic.getAllAppliances(Search.searchByAppTags(recipes, selected))));
+                    // this.fillAppliances(Utils.sortByTitle(Logic.getAllAppliances(Search.searchByTags(recipes, '', selected))));
             } else {
                 selected.splice(event.target.getAttribute('data-filter'));
                 Tags.resetSection(event, AppliancesTag, recipes);

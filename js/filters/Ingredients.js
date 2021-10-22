@@ -59,7 +59,6 @@ export default class Ingredients {
             let classValue = event.target.classList.value;
 
             if (-1 === classValue.indexOf('selected')) {
-
                 event.target.classList.add('selected');
                 selected.push(event.target.getAttribute('data-filter'));
                 button.hideButtonsOnClick(document.querySelector("#ingredientsElt > button"),
@@ -68,8 +67,10 @@ export default class Ingredients {
                 Tags.buildTags(ingredientTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(event, ingredientTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByIngTags(recipes, selected));
+                    // MessageAlert.buildResultMessageWithResult(Search.searchByTags(recipes,selected));
                 Utils.clearRecipesSection();
                 let result = Search.searchByIngTags(recipes, selected);
+                    // let result = Search.searchByTags(recipes,selected);
                 sectionRecipesCard.buildResult(result);
                 Utils.clearFilters(this.ingredientsEx);
                 this.fillIngredients(Utils.sortByTitle(Logic.getAllIngredients(result)));

@@ -67,10 +67,13 @@ export default class Ustensils {
                     .buildTags(ustensileTag,(event.target.getAttribute('data-filter')))
                     .removeTagsOnClick(event, ustensileTag, recipes);
                 MessageAlert.buildResultMessageWithResult(Search.searchByUstTags(recipes, selected));
+                    // MessageAlert.buildResultMessageWithResult(Search.searchByTags(recipes, '','', selected));
                 Utils.clearRecipesSection();
                 sectionRecipesCard.buildResult(Search.searchByUstTags(recipes, selected));
+                    // sectionRecipesCard.buildResult(Search.searchByTags(recipes, '','', selected));
                 Utils.clearFilters(this.ustensilsEx);
                 this.fillUstensils(Utils.sortByTitle(Logic.getAllUstensils(Search.searchByUstTags(recipes, selected))));
+                    // this.fillUstensils(Utils.sortByTitle(Logic.getAllUstensils(Search.searchByTags(recipes, '','', selected))));
             } else {
                 selected.splice(event.target.getAttribute('data-filter'));
                 Tags.resetSection(event, ustensileTag, recipes);

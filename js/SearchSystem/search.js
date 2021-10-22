@@ -25,9 +25,6 @@ export default class Search {
     }
     
 
-        
-    
-
      // search by each input 
     static searchInputFilters(collection, value) {
         let resultInput = [];
@@ -44,55 +41,56 @@ export default class Search {
         return resultInput;
     }
 
+
+    // static searchByTags (recipes, tagIng, tagApp, tagUst) {
+    //     let result
+    //     // console.log(tagIng)
+    //     // console.log(tagApp)
+    //     // console.log(tagUst)
+
+    //     const tag = Array.prototype.push.apply(tagIng ,tagApp, tagUst);
+    //     console.log(tag)
+    // }
+
+
+
+
     // ingredients tag
     static searchByIngTags(recipes, tagIng) {
         let resultIngredients = [];
-        // console.log(tagIng)
-        // console.log(recipes)
-
-        // recipes.forEach(recipe => {
-        //     if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng))) {
-        //         resultIngredients.push(recipe);
-        //     }
-        // });
-        // console.log(recipes.length , tagIng)
-
+       
         for(const recipe of recipes){
-            // console.log(recipe)
-
 
             //For par rapport au Tag (1 - 2...)
                 //recipe.ingredients.include(tag)
                     //PUSH (AREFLEICHIR)
-
-
-
+    
             for(const elt of recipe.ingredients){
+                // console.log(elt)
                 let test = Utils.normalizeText(elt.ingredient);
-                if( tagIng.includes(test)){
-                    // console.log(test )
-                    resultIngredients.push(recipe);
+
+
+                for (const tag of tagIng) {
+                    // console.log(tag)
+                    // if(tagIng.includes(tag) ) {
+                    //     console.log('true')
+                    // }
+
+                    if( tagIng.includes(test)){
+                        // console.log(recipe)
+                        resultIngredients.push(recipe);            
+                    }
                 }
-                
-
-                // if (Utils.normalizeText(elt.ingredient).includes(tagIng) ) {
-               
-                //         resultIngredients.push(recipe);
-                //     }
+                // if( tagIng.includes(test)){
+                //     resultIngredients.push(recipe);            
+                // }
             }
-
-            // recipe.ingredients.some(elt => {
-                
-            // })
-            // if (recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(tagIng) )) {
-               
-            //     resultIngredients.push(recipe);
-            // }
         }
-        
+        console.log(resultIngredients)
         return resultIngredients;
     }
 
+    
      // appliances tag
     static searchByAppTags(recipes, tagApp) {
         let resultAppliances = [];
@@ -106,6 +104,7 @@ export default class Search {
                 resultAppliances.push(recipe);
             }
         }
+        console.log(resultAppliances)
         return resultAppliances;
     }
 
@@ -127,6 +126,7 @@ export default class Search {
                 }
             }
         }
+        console.log(resultUstensils)
         return resultUstensils;
     }
 }

@@ -14,6 +14,7 @@ export default class Logic {
             for(const ing of recipe.ingredients){
                 if (!ingredients.includes(ing.ingredient.toLowerCase()))
                     ingredients.push(ing.ingredient.toLowerCase());
+                    // console.log(ingredients)
             }
         }
         return ingredients;

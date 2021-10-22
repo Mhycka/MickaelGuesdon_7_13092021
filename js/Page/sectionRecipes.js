@@ -13,7 +13,6 @@ export default class sectionRecipesCard {
     // build system for each recipe
     static buildRecipe(collection) {
         let section = document.getElementById('mainContent');
-        // console.log(section)
         return section.appendChild(this.createSectionElt(collection));
     }
 
