@@ -1,4 +1,4 @@
-// import builder from './Page/builder.js';
+import builder from './Page/builder.js';
 import MessageAlert from './Page/Message.js';
 import Search from './SearchSystem/search.js';
 import Utils from './UtilsElt/UtilsBase.js';
@@ -38,6 +38,7 @@ class tags{
         //Créer mon tableeau d'élement
         if( this.typeTag == "ingredient"){
             this.initIngredient(recipes)
+
         }else if(this.typeTag == "ustensil"){
             // console.log(this.typeTag);
 
@@ -48,12 +49,21 @@ class tags{
     }
 
     initIngredient(recipes){
-        console.log(recipes)
-            //crat tableu
-            if(!this.tabAllTags.includes()){
-                //push
-                //Supprimer double automatique
-            }   
+        for(let ings of recipes){
+            for(let ing of ings.ingredients){
+                let elt=ing.ingredient
+                elt=elt.toLowerCase()
+                this.tabAllTags.push(elt)
+                // console.log(this.tabAllTags)
+            }
+        }
+        this.tabAllTags = new Set(this.tabAllTags);
+        // console.log(this.tabAllTags)
+
+        if(!this.tabAllTags.includes()){
+            //push
+            //Supprimer double automatique
+        }   
     }
     
 
@@ -68,7 +78,7 @@ class tags{
     }
 
     affiche(){
-        console.log(this.tabTagsSelected);
+        // console.log(this.tabTagsSelected);
     }
 
     Clic(tagName){

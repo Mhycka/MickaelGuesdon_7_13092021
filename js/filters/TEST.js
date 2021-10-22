@@ -88,6 +88,7 @@ import button from '../page/button.js';
     static tabUst=[];
 
     static displayTagsStartsIng(array){
+        console.log(array)
         this.tabIng=[]
         document.getElementById('ingredientsExample').innerHTML=` `;
         for(let ings of array){
