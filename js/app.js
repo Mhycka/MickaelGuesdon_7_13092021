@@ -1,5 +1,5 @@
 // import builder from './Page/builder.js';
-import button from './page/button.js';
+// import button from './page/button.js';
 import MessageAlert from './Page/Message.js';
 import Search from './SearchSystem/search.js';
 import Utils from './UtilsElt/UtilsBase.js';
@@ -30,6 +30,7 @@ class tags{
         this.tabAllTags = [];
         this.tabTagsSelected = [] ;
         this.init();
+        // console.log(typeTag)
     }
 
     init(){
@@ -80,20 +81,59 @@ class tags{
     }
 
     render(){
-        let liste = document.getElementById(this.typeTag + 'Example'); 
+        let filter =document.getElementById('filter');
+        let eltdiv = document.createElement('div');
+        eltdiv.setAttribute('id', this.typeTag +'Elt');
+        filter.appendChild(eltdiv);
+        
+        let createBtn = document.getElementById(this.typeTag + 'Elt');
+        let eltBtn = document.createElement('button');
+        eltBtn.innerHTML= this.typeTag+ 's';
+        createBtn.appendChild(eltBtn);
+
+
+        let chevronOpen = document.createElement('i');
+        chevronOpen.setAttribute('class', 'fas fa-chevron-down');
+        chevronOpen.setAttribute('id', this.typeTag + 'OpenFilter');
+        eltBtn.appendChild(chevronOpen);
+
+        let eltdivHide = document.createElement('div');
+        eltdivHide.setAttribute('id', this.typeTag + 'Hide');
+        createBtn.appendChild(eltdivHide);
+
+        let createInput = document.getElementById(this.typeTag + 'Hide');
+        let eltLabel = document.createElement('label');
+        let eltInput = document.createElement('input');
+        let chevronClose = document.createElement('i');
+        let eltdiv2 = document.createElement('div');
+        eltLabel.setAttribute('for', this.typeTag + 'Input');
+        eltInput.setAttribute('type', 'search');
+        eltInput.setAttribute( 'id', this.typeTag + 'Input');
+        eltInput.setAttribute('aria-label', 'Search through ' + this.typeTag);
+        eltInput.setAttribute('placeholder', 'Search a ' + this.typeTag);
+        chevronClose.setAttribute('class', 'fas fa-chevron-up');
+        chevronClose.setAttribute('id', this.typeTag + 'CloseFilter');
+        createInput.appendChild(eltLabel);
+        createInput.appendChild(eltInput);
+        createInput.appendChild(chevronClose);
+        createInput.appendChild(eltdiv2);
+
+        // let liste = document.getElementById(this.typeTag + 'Example');
+        let eltul = document.createElement('ul');
+        eltul.setAttribute('id', this.typeTag + 'Example');
+        eltdiv2.appendChild(eltul);
+        // eltul.appendChild(liste);
+ 
         for(let tag of this.tabAllTags){
             let eltli=document.createElement('li');
-            liste.appendChild(eltli);
-
+            eltul.appendChild(eltli);
             eltli.innerHTML = tag;
         }
-        
         this.afficher();
     }
 
     afficher(){
-        // console.log(this.typeTag);
-        let launchBtn = document.getElementById(this.typeTag + 'Elt').childNodes[1];
+        let launchBtn = document.getElementById(this.typeTag + 'Elt').childNodes[0];
         let openBtn = document.getElementById(this.typeTag + 'OpenFilter');
         let closeBtn = document.getElementById(this.typeTag + 'CloseFilter');
         let hideBtn = document.getElementById (this.typeTag + 'Hide')
@@ -151,7 +191,7 @@ class tags{
 
         })
 
-    //    this.tabTagsSelected.push(tagName)
+       this.tabTagsSelected.push(tagName)
     }
 }
 
