@@ -30,7 +30,7 @@ export default class sectionRecipesCard {
 
         createSection.classList.add('articleRecipes');
         createSection.setAttribute('data-filter', dataFilter);
-        createSection.setAttribute('data-filter-ingredients', dataFilterIngredients);
+        createSection.setAttribute('data-filter-ingredient', dataFilterIngredients);
         createSection.setAttribute('data-filter-appliances', dataFilterAppliances);
         createSection.setAttribute('data-filter-ustensils', dataFilterUstensils);
         createSection.innerHTML = this.getArticleInnerHTML(collection);

@@ -1,8 +1,10 @@
-// import builder from './Page/builder.js';
+import builder from './Page/builder.js';
 // import button from './page/button.js';
 import MessageAlert from './Page/Message.js';
 import Search from './SearchSystem/search.js';
 import Utils from './UtilsElt/UtilsBase.js';
+import sectionRecipesCard from '../js/Page/sectionRecipes.js';
+
 
 // Build by default
 // builder.init();
@@ -47,6 +49,8 @@ class tags{
         }
         this.render();
         this.filterTags();
+        sectionRecipesCard.buildResult(recipesData);
+        this.searchBuilder();
     }
 
     initIngredient(recipes){
@@ -193,6 +197,23 @@ class tags{
 
        this.tabTagsSelected.push(tagName)
     }
+
+    searchBuilder(){
+        document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
+            let valueSearch = key.target.value;
+            if (Utils.isValid(valueSearch)) {
+                let result = Search.searchMainInput(valueSearch);
+                if (result.recipesMatchedArray.length === 0) {
+                    return MessageAlert.buildResultMessageWithNoResult();
+                }
+                Utils.clearRecipesSection();
+                // builder.initSearch(result);
+                return;
+            }
+            // Reset Build system
+            Utils.clearRecipesSection();
+        })
+    }
 }
 
 
@@ -201,15 +222,15 @@ let ustensil = new tags('ustensil');
 let appliance = new tags('appliance');
 
 ingredient.afficher()
-// ingredient.filterTags()
+// // ingredient.filterTags()
 
 ustensil.afficher()
-// ustensil.filterTags()
+// // ustensil.filterTags()
 
 appliance.afficher()
-// filterTags.filterTags()
-// Search.searcheTags(ustensil.affiche() , ingredient.affiche())
+// // filterTags.filterTags()
+// // Search.searcheTags(ustensil.affiche() , ingredient.affiche())
 
-// let ingredeint = new Accesoice("ingrediet" , recipe)
-// let applience = new Accesoice("applience" , recipe)
-// let ingredeint = new Accesoice("ingrediet" , recipe)
+// // let ingredeint = new Accesoice("ingrediet" , recipe)
+// // let applience = new Accesoice("applience" , recipe)
+// // let ingredeint = new Accesoice("ingrediet" , recipe)

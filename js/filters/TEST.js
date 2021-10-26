@@ -45,8 +45,8 @@
 
 // Return toutes nos recettes good 
 
-import Utils from '../UtilsElt/UtilsBase.js';
-import button from '../page/button.js';
+// import Utils from '../UtilsElt/UtilsBase.js';
+// import button from '../page/button.js';
 
 
  export default class BuilderRecipes {
