@@ -1,9 +1,10 @@
-import builder from './Page/builder.js';
+// import builder from './Page/builder.js';
 // import button from './page/button.js';
 import MessageAlert from './Page/Message.js';
-import Search from './SearchSystem/search.js';
+// import Search from './SearchSystem/search.js';
 import Utils from './UtilsElt/UtilsBase.js';
 import sectionRecipesCard from '../js/Page/sectionRecipes.js';
+// import Logic from './UtilsElt/Logic.js';
 
 
 // Build by default
@@ -32,7 +33,6 @@ class tags{
         this.tabAllTags = [];
         this.tabTagsSelected = [] ;
         this.init();
-        // console.log(typeTag)
     }
 
     init(){
@@ -48,7 +48,8 @@ class tags{
             this.initAppliance(recipes)
         }
         this.render();
-        this.filterTags();
+        this.renderTag()
+
         sectionRecipesCard.buildResult(recipesData);
         this.searchBuilder();
     }
@@ -140,7 +141,7 @@ class tags{
         let launchBtn = document.getElementById(this.typeTag + 'Elt').childNodes[0];
         let openBtn = document.getElementById(this.typeTag + 'OpenFilter');
         let closeBtn = document.getElementById(this.typeTag + 'CloseFilter');
-        let hideBtn = document.getElementById (this.typeTag + 'Hide')
+        let hideBtn = document.getElementById (this.typeTag + 'Hide');
 
         launchBtn.addEventListener('click', () => {
             this.displayBtn(launchBtn);
@@ -187,6 +188,51 @@ class tags{
         return hide.style.display = 'none';
     }
 
+    searchBuilder(){
+        document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
+            let valueSearch = key.target.value;
+
+            if (Utils.isValid(valueSearch)) {
+                let result = this.searchMainInput(valueSearch);
+                // console.log(valueSearch, valueSearch.length)
+
+                if (result.recipesMatchedArray.length === 0) {
+                    return MessageAlert.buildResultMessageWithNoResult();
+                }
+                Utils.clearRecipesSection();
+                this.initSearch(result);
+                return;
+            } else if (valueSearch.length < 3) {
+                MessageAlert.hideMessage();
+                sectionRecipesCard.buildResult(recipesData);
+                return;
+                
+            }
+            // Reset Build system
+            Utils.clearRecipesSection();
+        })
+    }
+
+    searchMainInput(value) {
+        let recipesMatchedArray = [];
+        for (const recipe of recipesData){
+            if (Utils.normalizeText(recipe.name).includes(Utils.normalizeText(value)) || Utils.normalizeText(recipe.description).includes(Utils.normalizeText(value)) || recipe.ingredients.some(elt => Utils.normalizeText(elt.ingredient).includes(value))) {
+                recipesMatchedArray.push(recipe);
+            }
+        }
+        return {
+            'recipesMatchedArray': recipesMatchedArray,
+            // 'ingredients': Logic.getAllIngredients(recipesMatchedArray),
+            // 'appliances': Logic.getAllAppliances(recipesMatchedArray),
+            // 'ustensils': Logic.getAllUstensils(recipesMatchedArray),
+        };       
+    }
+
+    initSearch(result) {
+        sectionRecipesCard.buildResult(result.recipesMatchedArray);
+        MessageAlert.buildResultMessageWithResult(result.recipesMatchedArray);
+    }
+
     filterTags(tagName){
         let AppliancesTag = document.getElementById('tagsBadges');
 
@@ -198,21 +244,30 @@ class tags{
        this.tabTagsSelected.push(tagName)
     }
 
-    searchBuilder(){
-        document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
-            let valueSearch = key.target.value;
-            if (Utils.isValid(valueSearch)) {
-                let result = Search.searchMainInput(valueSearch);
-                if (result.recipesMatchedArray.length === 0) {
-                    return MessageAlert.buildResultMessageWithNoResult();
-                }
-                Utils.clearRecipesSection();
-                // builder.initSearch(result);
-                return;
-            }
-            // Reset Build system
+    renderTag() {
+        let selected = [];
+        let ingredientTag = document.getElementById('tagsBadges');
+
+        document.getElementById(this.typeTag +'Example').addEventListener('click', (event) => {
+            let classValue = event.target.classList.value;
+
+            event.target.classList.add('selected');
+            selected.push(event.target.getAttribute('data-filter'));
+            this.hideButtonsOnClick(document.getElementById(this.typeTag + 'Elt').childNodes[0],
+                document.getElementById(this.typeTag + 'OpenFilter'),
+                document.getElementById (this.typeTag + 'Hide'));
+            // Tags.buildTags(ingredientTag,(event.target.getAttribute('data-filter')))
+            //     .removeTagsOnClick(event, ingredientTag, recipes);
+            MessageAlert.buildResultMessageWithResult(this.searchByIngTags(recipes, selected));
             Utils.clearRecipesSection();
+            let result = this.searchByIngTags(recipes, selected);
+            sectionRecipesCard.buildResult(result);
+            Utils.clearFilters(this.ingredientsEx);
         })
+    }
+
+    searchByIngTags(recipes, tagName) {
+        console.log(recipes, tagName)
     }
 }
 
@@ -230,7 +285,3 @@ ustensil.afficher()
 appliance.afficher()
 // // filterTags.filterTags()
 // // Search.searcheTags(ustensil.affiche() , ingredient.affiche())
-
-// // let ingredeint = new Accesoice("ingrediet" , recipe)
-// // let applience = new Accesoice("applience" , recipe)
-// // let ingredeint = new Accesoice("ingrediet" , recipe)
