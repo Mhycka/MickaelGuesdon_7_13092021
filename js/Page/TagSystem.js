@@ -1,103 +1,102 @@
-// 'use strict';
 
-import sectionRecipesCard from './sectionRecipes.js';
-import MessageAlert from './Message.js';
-import Utils from '../UtilsElt/UtilsBase.js';
-import Ingredients from '../filters/Ingredients.js';
-import Appliances from '../filters/Appliances.js';
-import Ustensils from '../filters/Ustensils.js';
-import Logic from '../UtilsElt/Logic.js';
+import sectionRecipesCard from './HtmlRender.js';
 
-export default class Tags {
-    static hiddenIngredientsFilter = document.querySelector('#ingredientHide');
-    static hiddenAppliancesFilter = document.querySelector('#applianceHide');
-    static hiddenUstensilesFilter = document.querySelector('#ustensilHide');
+ export default class tags{
 
-    // displays a badge whose selected
-    static buildTags(elt, tag) {
+    constructor(typeTag){
+        this.typeTag = typeTag;
+        this.tabAllTags = [];
+        this.tabTagsSelected = [] ;
+        this.init();
+    }
+
+ // Sort initialization for each category  
+    init(){
+        var recipes = recipesData;
+        //Créer mon tableeau d'élement
+        if( this.typeTag == "ingredient"){
+            this.initIngredient(recipes)
+
+        }else if(this.typeTag == "ustensil"){
+            this.initUstensil(recipes)
+
+        }else if(this.typeTag == "appliance"){
+            this.initAppliance(recipes)
+        }
+    
+        sectionRecipesCard.buildResult(recipesData);
+        sectionRecipesCard.render(this.tabAllTags, this.typeTag);
+        // this.filterTags(recipes);
+        document.getElementById(this.typeTag + 'Example').addEventListener('click', (event) => { 
+            this.filterTags(this.tabAllTags, event) })
+    }
+
+    initIngredient(recipes){
+        for(let ings of recipes){
+            for(let ing of ings.ingredients){
+                let elt=ing.ingredient
+                elt=elt.toLowerCase()
+                this.tabAllTags.push(elt)
+            }
+        }
+        this.tabAllTags = new Set(this.tabAllTags); 
+    }
+
+    initUstensil(recipes){
+        for(let ings of recipes){
+            for(let ing of ings.ustensils){
+                let elt=ing
+                elt=elt.toLowerCase()
+                this.tabAllTags.push(elt)
+            }
+        }
+        this.tabAllTags = new Set(this.tabAllTags);
+    }
+    
+    initAppliance(recipes){
+        for(let elt of recipes){
+            let elt2=elt.appliance
+            elt2=elt2.toLowerCase()
+            this.tabAllTags.push(elt2)
+        }
+        this.tabAllTags = new Set(this.tabAllTags);
+    }
+
+    filterTags(allTags, event){
+        // console.log(event.path[0])
+        let elementTag = document.getElementById('tagsBadges');
+
+        for(const tagName of allTags){
+            // console.log(event.target.textContent, tagName)
+            if( event.target.textContent === tagName) {
+                // console.log(event.target)
+                this.tabTagsSelected.push(event.target.textContent)
+                console.log(this.tabTagsSelected)
+
+                this.buildTags(elementTag, event.target.textContent)
+            }
+        }
+    }
+
+    buildTags(elt, tag) {
         this.pushDownButtonsFilter();
         // this.displayTag(elt);
-        this.fillTag(elt, tag);
+        this.renderTag(elt, tag);
+
+        console.log(this.tabTagsSelected)
+        //SEARCH TAG
+        // sectionRecipesCard.buildRecipe(this.tabTagsSelected)
         return this;
     }
 
-    // static displayTag(elt) {
-    //     if(elt.style.display ='none') {
-    //         return elt.style.display = 'flex';
-    //     }
-    // }
-
-
-    // fill in the selected tag
-    static fillTag(elt, tag) {
-        let ingredientsList = document.querySelectorAll('.listUlIng > li');
-        let appliancesList = document.querySelectorAll('.listUlApp > li');
-        let ustensilsList = document.querySelectorAll('.listUlUst > li');
+    renderTag(elt, tag) {
+        // let elementList = document.querySelectorAll('#' + this.typeTag + 'Example > li');
+        // console.log(elementList)
         
-        // console.log(elt)
-        // console.log(ingredientsList)
-
-        ingredientsList.forEach((ingredient) => {
-            if(ingredient.hasAttribute('data-filter') && ingredient.classList.contains('selected')) {
-                // ingredientsList.tag.remove();
-                return elt.innerHTML += `<div class="ingredientTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
-            }
-        });
-
-        appliancesList.forEach((appliance) => {
-            if(appliance.hasAttribute('data-filter') && appliance.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="applianceTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
-            }
-        });
-
-        ustensilsList.forEach((ustensil) => {
-            if(ustensil.hasAttribute('data-filter') && ustensil.classList.contains('selected')) {
-                return elt.innerHTML += `<div class="ustensilTag" id="tagElt">${tag} <i class='far fa-times-circle' ></i></div>`;
-            }
-        })
+        return elt.innerHTML += `<div class="${this.typeTag}Tag" id="tagElt">${tag} <i class="far fa-times-circle" ></i></div>`;
     }
 
-    // remove the tag
-    static hideTag() {
-        this.pushUpButtonsFilter();
-        let tag = document.getElementById("tagElt");
-        tag.remove();
-        // return elt.style.display = 'none';
-
-    }
-
-    static pushDownButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '0rem';
-        this.hiddenAppliancesFilter.style.top = '0rem';
-        this.hiddenUstensilesFilter.style.top = '0rem';
-    }
-
-    static pushUpButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '0rem';
-        this.hiddenAppliancesFilter.style.top = '0rem';
-        this.hiddenUstensilesFilter.style.top = '0rem';
-    }
-
-    static removeTagsOnClick(event, eltBadge, recipes) {
-        let tagToClose = document.querySelectorAll('#tagElt');
-        tagToClose.forEach((tag) => {
-            tag.addEventListener('click', () => {
-                this.resetSection(event, eltBadge, recipes);
-            })
-        })
-    }
-
-    static resetSection(event, eltBadge, recipes) {
-        event.target.classList.remove('selected');
-        this.hideTag(eltBadge);
-        MessageAlert.buildResultMessageWithResult(recipes);
-        Utils.clearRecipesSection();
-        sectionRecipesCard.buildResult(recipes);
-        Utils.clearFilters(document.getElementById('ingredientExample'));
-        Ingredients.fillIngredients(Logic.getAllIngredients(recipes));
-        Utils.clearFilters(document.getElementById('applianceExample'));
-        Appliances.fillAppliances(Logic.getAllAppliances(recipes));
-        Utils.clearFilters(document.getElementById('ustensilExample'));
-        Ustensils.fillUstensils(Logic.getAllUstensils(recipes));
+    pushDownButtonsFilter() {
+        document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
     }
 }

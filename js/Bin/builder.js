@@ -2,9 +2,9 @@
 
 // import Appliances from '../filters/Appliances.js';
 // import Logic from '../UtilsElt/Logic.js';
-import sectionRecipesCard from './sectionRecipes.js';
+import sectionRecipesCard from '../Page/sectionRecipes.js';
 // import Ingredients from '../filters/Ingredients.js';
-import MessageAlert from './Message.js';
+import MessageAlert from '../Page/Message.js';
 // import Ustensils from '../filters/Ustensils.js';
 import BuilderRecipes from '../filters/TEST.js';
 

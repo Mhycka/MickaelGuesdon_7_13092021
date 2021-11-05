@@ -1,10 +1,10 @@
 // 'use strict';
 
-import button from '../page/button.js';
+import button from './button.js';
 import sectionRecipesCard from '../Page/sectionRecipes.js';
 import MessageAlert from '../page/Message.js';
 import Search from '../SearchSystem/search.js';
-import Tags from '../Page/TagSystem.js';
+import Tags from './TagSystem.js';
 import Utils from '../UtilsElt/UtilsBase.js';
 import Logic from '../UtilsElt/Logic.js';
 

@@ -1,11 +1,11 @@
 // 'use strict';
 
-import button from '../Page/button.js';
+import button from './button.js';
 import Logic from '../UtilsElt/Logic.js';
 import sectionRecipesCard from '../Page/sectionRecipes.js';
 import MessageAlert from '../Page/Message.js';
 import Search from '../SearchSystem/search.js';
-import Tags from '../Page/TagSystem.js';
+import Tags from './TagSystem.js';
 import Utils from '../UtilsElt/UtilsBase.js';
 
 export default class Appliances {
