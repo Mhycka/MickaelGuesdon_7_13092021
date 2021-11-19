@@ -1,38 +1,45 @@
 
-import sectionRecipesCard from './HtmlRender.js';
+import htmlRender from './HtmlRender.js';
+import MessageAlert from './Message.js';
+import Utils from '../UtilsElt/UtilsBase.js';
+import Logic from '../UtilsElt/Logic.js';
+import Search from '../SearchSystem/search.js';
 
  export default class tags{
 
-    constructor(typeTag){
+    constructor(typeTag , recipes){
         this.typeTag = typeTag;
         this.tabAllTags = [];
         this.tabTagsSelected = [] ;
+        this.recipesOriginData = recipes;
         this.init();
     }
 
  // Sort initialization for each category  
     init(){
-        var recipes = recipesData;
-        //Créer mon tableeau d'élement
+        //Create an Array of element
         if( this.typeTag == "ingredient"){
-            this.initIngredient(recipes)
+            this.initIngredient()
 
         }else if(this.typeTag == "ustensil"){
-            this.initUstensil(recipes)
+            this.initUstensil()
 
         }else if(this.typeTag == "appliance"){
-            this.initAppliance(recipes)
+            this.initAppliance()
         }
     
-        sectionRecipesCard.buildResult(recipesData);
-        sectionRecipesCard.render(this.tabAllTags, this.typeTag);
-        // this.filterTags(recipes);
-        document.getElementById(this.typeTag + 'Example').addEventListener('click', (event) => { 
-            this.filterTags(this.tabAllTags, event) })
+        htmlRender.buildRecipes(this.recipesOriginData);
+        htmlRender.buildBlocKTags(this.tabAllTags, this.typeTag);
+
+        // document.getElementById(this.typeTag + 'Example').addEventListener('click', (event) => { 
+        //      this.filterTags(event) 
+        // })
+        
+        this.filterTags();
     }
 
-    initIngredient(recipes){
-        for(let ings of recipes){
+    initIngredient(){
+        for(let ings of this.recipesOriginData){
             for(let ing of ings.ingredients){
                 let elt=ing.ingredient
                 elt=elt.toLowerCase()
@@ -42,8 +49,8 @@ import sectionRecipesCard from './HtmlRender.js';
         this.tabAllTags = new Set(this.tabAllTags); 
     }
 
-    initUstensil(recipes){
-        for(let ings of recipes){
+    initUstensil(){
+        for(let ings of this.recipesOriginData){
             for(let ing of ings.ustensils){
                 let elt=ing
                 elt=elt.toLowerCase()
@@ -53,8 +60,8 @@ import sectionRecipesCard from './HtmlRender.js';
         this.tabAllTags = new Set(this.tabAllTags);
     }
     
-    initAppliance(recipes){
-        for(let elt of recipes){
+    initAppliance(){
+        for(let elt of this.recipesOriginData){
             let elt2=elt.appliance
             elt2=elt2.toLowerCase()
             this.tabAllTags.push(elt2)
@@ -62,41 +69,72 @@ import sectionRecipesCard from './HtmlRender.js';
         this.tabAllTags = new Set(this.tabAllTags);
     }
 
-    filterTags(allTags, event){
-        // console.log(event.path[0])
-        let elementTag = document.getElementById('tagsBadges');
+    filterTags(){
+        let container = document.querySelector("#" + this.typeTag + 'Example');
+        let tagsList = container.querySelectorAll("li");
 
-        for(const tagName of allTags){
-            // console.log(event.target.textContent, tagName)
-            if( event.target.textContent === tagName) {
-                // console.log(event.target)
-                this.tabTagsSelected.push(event.target.textContent)
-                console.log(this.tabTagsSelected)
-
-                this.buildTags(elementTag, event.target.textContent)
-            }
+        for (const tag of tagsList) {
+            tag.addEventListener('click', (event) => {
+                this.tabTagsSelected.push(event.target.textContent);
+                this.eventTags(event.target.textContent);
+                console.log(this.tabAllTags)
+                this.tabAllTags.splice(tag);
+            })
         }
+       
     }
 
-    buildTags(elt, tag) {
+    eventTags(tag) {
+        let elementTag = document.getElementById('tagsBadges');
         this.pushDownButtonsFilter();
-        // this.displayTag(elt);
-        this.renderTag(elt, tag);
+        this.renderTag(elementTag, tag);
+        Search.builderSearchTag(this.typeTag);
 
-        console.log(this.tabTagsSelected)
-        //SEARCH TAG
-        // sectionRecipesCard.buildRecipe(this.tabTagsSelected)
         return this;
     }
 
     renderTag(elt, tag) {
-        // let elementList = document.querySelectorAll('#' + this.typeTag + 'Example > li');
-        // console.log(elementList)
-        
-        return elt.innerHTML += `<div class="${this.typeTag}Tag" id="tagElt">${tag} <i class="far fa-times-circle" ></i></div>`;
+        elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tag}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
+
+        this.hideTag();
     }
 
     pushDownButtonsFilter() {
         document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
+    }
+
+    hideTag() {
+        let closeIcon = document.querySelectorAll('#' + 'closeIcon');
+
+        for (const close of closeIcon) {
+            close.addEventListener('click', () =>{
+                this.pushUpButtonsFilter();
+                close.remove();
+            })
+        }
+    }
+
+    pushUpButtonsFilter() {
+        document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
+    }
+
+    // removeTagsOnClick(event, elementTag, recipes) {
+    //     console.log(event, elementTag, recipes)
+    //     let tagToClose = document.querySelectorAll('.' + this.typeTag + 'Tag');
+    //     console.log(tagToClose)
+    //     tagToClose.forEach((tag) => {
+    //         tag.addEventListener('click', () => {
+    //             this.resetSection(event, elementTag, recipes);
+    //         })
+    //     })
+    // }
+
+    resetSection(elt, tag, recipes) {
+        // this.hideTag(elt, tag, recipes);
+        MessageAlert.buildResultMessageWithResult(recipes);
+        // Utils.clearRecipesSection();
+        // sectionRecipesCard.buildResult(recipes);
+        // Utils.clearFilters(document.getElementById(this.typeTag+ 'Example'));
+        // sectionRecipesCard.render(init(recipes));
     }
 }

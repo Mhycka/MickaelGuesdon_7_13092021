@@ -2,29 +2,27 @@
 
 import Utils from '../UtilsElt/UtilsBase.js';
 
-export default class sectionRecipesCard {
+export default class htmlRender {
     // build the section containing the recipes to display
-    static buildResult(collections) {
-        return collections.forEach(collection => {
-            this.buildRecipe(collection);
+    static buildRecipes(collections) {
+        return collections.forEach(recipe => {
+            this.buildRecipe(recipe);
         });
     }
 
     // build system for each recipe
-    static buildRecipe(collection) {
+    static buildRecipe(recipe) {
         let section = document.getElementById('mainContent');
-        return section.appendChild(this.createSectionElt(collection));
+        return section.appendChild(this.createSectionElt(recipe));
     }
 
     // create the article with informations
-    static createSectionElt(collection) {
+    static createSectionElt(recipe) {
         let createSection = document.createElement('div');
-        let dataFilterIngredients = collection.ingredients.map(element => Utils.normalizeText(element.ingredient));
-        let dataFilterAppliances = Utils.normalizeText(collection.appliance);
-        let dataFilterUstensils = collection.ustensils;
-        let dataFilter = collection.ingredients.map(element => Utils.normalizeText(element.ingredient)) + collection.ustensils + Utils.normalizeText(collection.appliance);
-
-        // console.log(article, dataFilterAppliances)
+        let dataFilterIngredients = recipe.ingredients.map(element => Utils.normalizeText(element.ingredient));
+        let dataFilterAppliances = Utils.normalizeText(recipe.appliance);
+        let dataFilterUstensils = recipe.ustensils;
+        let dataFilter = recipe.ingredients.map(element => Utils.normalizeText(element.ingredient)) + recipe.ustensils + Utils.normalizeText(recipe.appliance);
 
         createSection.classList.add('col-3.5');
 
@@ -33,33 +31,33 @@ export default class sectionRecipesCard {
         createSection.setAttribute('data-filter-ingredient', dataFilterIngredients);
         createSection.setAttribute('data-filter-appliances', dataFilterAppliances);
         createSection.setAttribute('data-filter-ustensils', dataFilterUstensils);
-        createSection.innerHTML = this.getArticleInnerHTML(collection);
+        createSection.innerHTML = this.getArticleInnerHTML(recipe);
 
         return createSection;
     }
 
-    static getArticleInnerHTML(collection) {
+    static getArticleInnerHTML(recipe) {
         return `
             <img src='https://res.cloudinary.com/dlpyn3wxf/image/upload/v1619104039/img-recipes_tqi94t.png' alt='img' />
             <div class='recipeTitle'>
-                <h2 class='recipeName'>${collection.name}</h2>
-                <span class='recipeDuration'><i class='far fa-clock'></i>${collection.time} min</span>
+                <h2 class='recipeName'>${recipe.name}</h2>
+                <span class='recipeDuration'><i class='far fa-clock'></i>${recipe.time} min</span>
             </div>
             <div class='recipeInfo'>
-                <div class='recipeIngredients'>${collection.ingredients.map(elt => `
+                <div class='recipeIngredients'>${recipe.ingredients.map(elt => `
                     <p><b>${elt.ingredient} </b>:
                     ${ 'quantity' in elt ? elt.quantity : ''}
                     ${ 'unit' in elt ? elt.unit: ''}</p>`).join(' ')}
                 </div>
                 <div class='recipeInstructions'>
-                    <span>${collection.description}</span>
+                    <span>${recipe.description}</span>
                 </div>
             </div>
         `;
     }
 
     // HTML rendering of filters and their content
-    static render(tabAllTags, typeTag){
+    static buildBlocKTags(tabAllTags, typeTag){
         let filter =document.getElementById('filter');
         let eltdiv = document.createElement('div');
         eltdiv.setAttribute('id', typeTag +'Elt');

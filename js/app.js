@@ -1,10 +1,10 @@
 import tags from './Page/TagSystem.js';
 import Search from './SearchSystem/search.js'
-import sectionRecipesCard from './Page/HtmlRender.js'
+import htmlRender from './Page/HtmlRender.js'
 
-let ingredient = new tags('ingredient');
-let ustensil = new tags('ustensil');
-let appliance = new tags('appliance');
+let ingredient = new tags('ingredient', recipesData);
+let ustensil = new tags('ustensil', recipesData);
+let appliance = new tags('appliance', recipesData);
 
 // window.onload = function() {
 //     let test = '#' + ingredient.typeTag + 'Example > li';

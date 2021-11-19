@@ -74,10 +74,6 @@ export default class Utils {
         return open.style.display = 'none';
     }
 
-    // hideElement(elm){
-    //     return elm.style.display = 'none';
-    // }
-
     static displayHidden(hide){
         return hide.style.display = 'block';
     }
