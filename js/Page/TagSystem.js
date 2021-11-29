@@ -1,8 +1,5 @@
 
 import htmlRender from './HtmlRender.js';
-import MessageAlert from './Message.js';
-import Utils from '../UtilsElt/UtilsBase.js';
-import Logic from '../UtilsElt/Logic.js';
 import Search from '../SearchSystem/search.js';
 
  export default class tags{
@@ -28,13 +25,8 @@ import Search from '../SearchSystem/search.js';
             this.initAppliance()
         }
     
-        htmlRender.buildRecipes(this.recipesOriginData);
         htmlRender.buildBlocKTags(this.tabAllTags, this.typeTag);
 
-        // document.getElementById(this.typeTag + 'Example').addEventListener('click', (event) => { 
-        //      this.filterTags(event) 
-        // })
-        
         this.filterTags();
     }
 
@@ -70,71 +62,53 @@ import Search from '../SearchSystem/search.js';
     }
 
     filterTags(){
-        let container = document.querySelector("#" + this.typeTag + 'Example');
-        let tagsList = container.querySelectorAll("li");
+        let tags = document.querySelector("#" + this.typeTag + 'Example');
+        let tagsList = tags.querySelectorAll("li");
 
         for (const tag of tagsList) {
             tag.addEventListener('click', (event) => {
                 this.tabTagsSelected.push(event.target.textContent);
-                this.eventTags(event.target.textContent);
-                console.log(this.tabAllTags)
-                this.tabAllTags.splice(tag);
+                tag.style.display="none";
+                this.eventTags(event.target.textContent, tag, event.target);
             })
         }
-       
     }
 
-    eventTags(tag) {
+    eventTags(tagText, tag, event) {
         let elementTag = document.getElementById('tagsBadges');
         this.pushDownButtonsFilter();
-        this.renderTag(elementTag, tag);
-        Search.builderSearchTag(this.typeTag);
+        this.renderTag(elementTag, tagText, tag);
+        Search.builderSearchTag(this.typeTag, event);
 
         return this;
     }
 
-    renderTag(elt, tag) {
-        elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tag}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
+    renderTag(elt, tagText,tag) {
+        // console.log(elt,tag)
+        elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tagText}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
 
-        this.hideTag();
+        this.hideTag(tag);
     }
 
     pushDownButtonsFilter() {
         document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
     }
 
-    hideTag() {
+    hideTag(tag) {
         let closeIcon = document.querySelectorAll('#' + 'closeIcon');
 
         for (const close of closeIcon) {
             close.addEventListener('click', () =>{
+                // console.log(close)
                 this.pushUpButtonsFilter();
                 close.remove();
+                tag.style.display="initial";
+                htmlRender.buildRecipes(this.recipesOriginData);
             })
         }
     }
 
     pushUpButtonsFilter() {
         document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
-    }
-
-    // removeTagsOnClick(event, elementTag, recipes) {
-    //     console.log(event, elementTag, recipes)
-    //     let tagToClose = document.querySelectorAll('.' + this.typeTag + 'Tag');
-    //     console.log(tagToClose)
-    //     tagToClose.forEach((tag) => {
-    //         tag.addEventListener('click', () => {
-    //             this.resetSection(event, elementTag, recipes);
-    //         })
-    //     })
-    // }
-
-    resetSection(elt, tag, recipes) {
-        // this.hideTag(elt, tag, recipes);
-        MessageAlert.buildResultMessageWithResult(recipes);
-        // Utils.clearRecipesSection();
-        // sectionRecipesCard.buildResult(recipes);
-        // Utils.clearFilters(document.getElementById(this.typeTag+ 'Example'));
-        // sectionRecipesCard.render(init(recipes));
     }
 }

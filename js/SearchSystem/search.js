@@ -12,7 +12,6 @@ export default class Search {
 
             if (Utils.isValid(valueSearch)) {
                 let result = this.searchMainInput(valueSearch);
-                // console.log(valueSearch, valueSearch.length)
 
                 if (result.recipesMatchedArray.length === 0) {
                     return MessageAlert.buildResultMessageWithNoResult();
@@ -43,72 +42,41 @@ export default class Search {
         };       
     }
 
-    //Filter les recipes par rapport au tag -> rebuild html
-
-
-    // static builderSearchTag(elt, tag, recipes, typeTag, tagselected) {
-
-    //     for( const tagValue of tagselected) {      
-    //         if (tagValue.includes(tag)) {
-    //             // console.log('ok')
-                
-    //             //Focntion test()
-    //             let result = this.searchFilterTag(tag, tagselected);
-                
-    //             if (result.recipesMatchedTagArray.length === 0) {
-    //                 return MessageAlert.buildResultMessageWithNoResult();
-    //             }
-    //             Utils.clearRecipesSection();
-    //             this.initSearchTag(result);
-    //             return;
-    //          }  else if (tagselected.length <= 0) {
-    //             MessageAlert.hideMessage();
-    //             sectionRecipesCard.buildResult(recipes);
-    //             return;
-                
-    //          }
-    //         //Reset Build system
-    //         Utils.clearRecipesSection();
-    //     }
-    // }
-
- 
-    
-        //Chercher tout nos filtres dans le HTML
-        //Créer un tableau de donnée (Foreach)
-        //Foreach
-            //push Tag dans un tableau
-
-        //SearhFilter(Tag)
-
-        //Message d'erreur
-
-    static builderSearchTag(typeTag){
+    static builderSearchTag(typeTag, event){
         let tagData = [];
-        let tags = document.querySelectorAll('.'+ typeTag +'Tag');
+        let tags = document.querySelectorAll('#tagsBadges span');
+        
+        console.log('error')
 
         for(const tag of tags){
-            tagData.push(tag);
-            this.searchFilterTag(tagData);
+            tagData.push( Utils.normalizeText(tag.textContent));
         }
+
+        // console.log(tagData)
+
+        this.searchFilterTag(tagData, typeTag, event);
 
         if (tagData.length === 0) {
             return MessageAlert.buildResultMessageWithNoResult();
         }
     }
 
-    static searchFilterTag(tags){
+    static searchFilterTag(tags, typeTag, event){
         let recipesMatchedTagArray = [];
         let recipesMatchedTagArray2 = [];
         let i = 0;
 
-        for(const tag of tags){
-            let tagText = Utils.normalizeText(tag.textContent);
+        console.log('test ok')
 
+        for(const tag of tags){
+            let tagText = tag;
+            // console.log(i)
             if( i == 0){
+                // console.log('first' ,  i )
                 for(const recipe of recipesData){
+                    
                     let recipeName = Utils.normalizeText(recipe.name);
-                    let recipeDescription = Utils.normalizeText(recipe.description);                       
+                    let recipeDescription = Utils.normalizeText(recipe.description);
                     let searchNotFinish = true;
 
                     if(recipeName.includes(tagText) || recipeDescription.includes(tagText)) {
@@ -124,38 +92,58 @@ export default class Search {
                             }
                         }
 
+                        for(const ustensil of recipe.ustensils){
+                            let recipeUst = Utils.normalizeText(ustensil);   
+                            if(recipeUst.includes(tagText)){
+                                recipesMatchedTagArray.push(recipe);
+                            }                  
+                        }
+
                     }
-                }                
+                }
+                                
                 i++;
-                Utils.clearRecipesSection();
-                this.initSearchTag(recipesMatchedTagArray);
+                
+                // htmlRender.updateTagList(recipesMatchedTagArray, typeTag);
 
             }else{
-                for(const recipeFiltered of recipesMatchedTagArray){
-                    let recipeName = Utils.normalizeText(recipeFiltered.name);
-                    let recipeDescription = Utils.normalizeText(recipeFiltered.description);   
-                    let searchNotEnd = true;
-                    
-
-                    if(recipeName.includes(tagText) || recipeDescription.includes(tagText)) {
-                        recipesMatchedTagArray2.push(recipeFiltered);
-                        searchNotEnd = false;
-                    }
-
-                    if(searchNotEnd){
-                        for(const ingredient of recipeFiltered.ingredients){
-                            let recipeIng = Utils.normalizeText(ingredient.ingredient);
-                            if(recipeIng.includes(tagText)){
-                                recipesMatchedTagArray2.push(recipeFiltered);
+                if(recipesMatchedTagArray.length != 0){
+                    // console.log('JE suis ici')
+                    for(const recipeFiltered of recipesMatchedTagArray){
+                        let recipeName = Utils.normalizeText(recipeFiltered.name);
+                        let recipeDescription = Utils.normalizeText(recipeFiltered.description);   
+                        let searchNotEnd = true;
+                        
+    
+                        if(recipeName.includes(tagText) || recipeDescription.includes(tagText)) {
+                            recipesMatchedTagArray2.push(recipeFiltered);
+                            searchNotEnd = false;
+                        }
+    
+                        if(searchNotEnd){
+                            for(const ingredient of recipeFiltered.ingredients){
+                                let recipeIng = Utils.normalizeText(ingredient.ingredient);
+                                if(recipeIng.includes(tagText)){
+                                    recipesMatchedTagArray2.push(recipeFiltered);
+                                }
+                            }
+    
+                            for(const ustensil of recipeFiltered.ustensils){
+                                let recipeUst = Utils.normalizeText(ustensil);   
+                                if(recipeUst.includes(tagText)){
+                                    recipesMatchedTagArray2.push(recipeFiltered);
+                                }                  
                             }
                         }
                     }
                 }
                 recipesMatchedTagArray = recipesMatchedTagArray2;
-                Utils.clearRecipesSection();
-                this.initSearchTag(recipesMatchedTagArray);
+                recipesMatchedTagArray2 = [];
             }
         }
+
+        Utils.clearRecipesSection();
+        this.initSearchTag(recipesMatchedTagArray, typeTag, event);
 
         return{
             'recipesMatchedTagArray' : recipesMatchedTagArray
@@ -167,8 +155,10 @@ export default class Search {
         MessageAlert.buildResultMessageWithResult(result.recipesMatchedArray);
     }
 
-    static initSearchTag(recipesMatchedTagArray){
+    static initSearchTag(recipesMatchedTagArray, typeTag){
+        console.log(recipesMatchedTagArray)
         htmlRender.buildRecipes(recipesMatchedTagArray);
+        htmlRender.updateTagList(recipesMatchedTagArray, typeTag, event);
         MessageAlert.buildResultMessageWithResult(recipesMatchedTagArray);
     }
 }

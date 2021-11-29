@@ -1,10 +1,13 @@
 // 'use strict';
 
+import Search from '../SearchSystem/search.js';
 import Utils from '../UtilsElt/UtilsBase.js';
+import tags from './TagSystem.js';
 
 export default class htmlRender {
     // build the section containing the recipes to display
     static buildRecipes(collections) {
+        // console.log(collections)
         return collections.forEach(recipe => {
             this.buildRecipe(recipe);
         });
@@ -95,19 +98,74 @@ export default class htmlRender {
         createInput.appendChild(chevronClose);
         createInput.appendChild(eltdiv2);
 
-        // let liste = document.getElementById(this.typeTag + 'Example');
         let eltul = document.createElement('ul');
         eltul.setAttribute('id', typeTag + 'Example');
-        eltdiv2.appendChild(eltul);
-        // eltul.appendChild(liste);
-        
+        eltdiv2.appendChild(eltul, tabAllTags);
+
+        // for(let tag of tabAllTags){
+        //     let eltli=document.createElement('li');
+        //     eltul.appendChild(eltli);
+        //     eltli.innerHTML = tag;
+        // }
+
+        this.rendertaglist(eltul, tabAllTags)
+        this.afficher(typeTag);
+
+        // console.log(document.querySelectorAll('#'+ typeTag+ 'Example li'))
+    }
+
+     static rendertaglist(eltul, tabAllTags) {
         for(let tag of tabAllTags){
             let eltli=document.createElement('li');
             eltul.appendChild(eltli);
             eltli.innerHTML = tag;
         }
+    }
+    
+    static updateTagList(recipesMatched, typeTag, event){
+        // console.log(recipesMatched, event.target)
+        Utils.clearTagsList(typeTag);
+        let tabTagsList = []
+
+        if( typeTag == "ingredient"){
+            for(let ings of recipesMatched){
+                for(let ing of ings.ingredients){
+                    let elt=ing.ingredient
+                    elt=elt.toLowerCase()*
+                    tabTagsList.push(elt)
+                }
+            }
+            tabTagsList = new Set(tabTagsList);
+
+        } else if(typeTag == "ustensil"){
+            for(let usts of recipesMatched){
+                for(let ust of usts.ustensils){
+                    let elt=ust
+                    elt=elt.toLowerCase()
+                    tabTagsList.push(elt)
+                }
+            }
+            tabTagsList = new Set(tabTagsList);
+
+        }else if(typeTag == "appliance"){
+            for(let elt of recipesMatched){
+                let elt2=elt.appliance
+                elt2=elt2.toLowerCase()
+                tabTagsList.push(elt2)
+            }
+            tabTagsList = new Set(tabTagsList);
+        }
+        
+        // console.log(tabTagsList); 
+        
+        for(let tag of tabTagsList){
+            let eltul = document.getElementById(typeTag + 'Example');
+            let eltli=document.createElement('li');
+            eltul.appendChild(eltli);
+            eltli.innerHTML = tag;
+        }
         this.afficher(typeTag);
-        // this.searchInput(recipes);
+        console.log('ok')
     }
 
 // Display and event linked to the category filter button

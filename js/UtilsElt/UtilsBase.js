@@ -35,6 +35,10 @@ export default class Utils {
         return elt.innerHTML = '';
     }
 
+    static clearTagsList(typeTag) {
+        return document.getElementById(typeTag + 'Example').innerHTML='';
+    }
+
     // Collect all recipes of categories
     static sortByTitle(array) {
         let arrayNoSort = [...new Set(array)];
