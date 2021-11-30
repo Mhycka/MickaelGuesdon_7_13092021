@@ -5,7 +5,6 @@ import Utils from '../UtilsElt/UtilsBase.js';
 export default class htmlRender {
     // build the section containing the recipes to display
     static buildRecipes(collections) {
-        // console.log(collections)
         return collections.forEach(recipe => {
             this.buildRecipe(recipe);
         });
@@ -113,7 +112,6 @@ export default class htmlRender {
     }
     
     static updateTagList(recipesMatched, typeTag, event){
-        // console.log(recipesMatched, event.target)
         Utils.clearTagsList(typeTag);
         let tabTagsList = []
 
@@ -145,16 +143,13 @@ export default class htmlRender {
             })
             tabTagsList = new Set(tabTagsList);
         }
-        
-        // console.log(tabTagsList); 
-        
+                
         tabTagsList.forEach( tag =>{
             let eltul = document.getElementById(typeTag + 'Example');
             let eltli=document.createElement('li');
             eltul.appendChild(eltli);
             eltli.innerHTML = tag;
         })
-        // this.afficher(typeTag);
     }
 
 // Display and event linked to the category filter button

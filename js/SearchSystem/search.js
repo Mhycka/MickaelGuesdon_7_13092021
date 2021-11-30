@@ -100,9 +100,7 @@ export default class Search {
 
         tags.forEach(tag =>{
             let tagText = tag;
-            // console.log(i)
             if( i == 0){
-                // console.log('first' ,  i )
                 recipesData.forEach( recipe =>{
                     
                     let recipeName = Utils.normalizeText(recipe.name);
@@ -136,11 +134,8 @@ export default class Search {
                                 
                 i++;
                 
-                // htmlRender.updateTagList(recipesMatchedTagArray, typeTag);
-
             }else{
                 if(recipesMatchedTagArray.length != 0){
-                    // console.log('JE suis ici')
                     recipesMatchedTagArray.forEach(recipeFiltered =>{
 
                         let recipeName = Utils.normalizeText(recipeFiltered.name);

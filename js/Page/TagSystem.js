@@ -1,6 +1,7 @@
 import htmlRender from './HtmlRender.js';
 import Search from '../SearchSystem/search.js';
 import Utils from '../UtilsElt/UtilsBase.js';
+import MessageAlert from './Message.js';
 
  export default class tags{
 
@@ -89,7 +90,6 @@ import Utils from '../UtilsElt/UtilsBase.js';
     }
 
     renderTag(elt, tagText,tag) {
-        // console.log(elt,tag)
         elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tagText}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
 
         this.hideTag(tag);
@@ -101,17 +101,24 @@ import Utils from '../UtilsElt/UtilsBase.js';
 
     hideTag(tag) {
         let closeIcon = document.querySelectorAll('#' + 'closeIcon');
-
-        closeIcon.forEach( close => {
+        let i = closeIcon.length;
+        
+        for (const close of closeIcon) {
             close.addEventListener('click', () =>{
-                // console.log(close)
                 this.pushUpButtonsFilter();
                 close.remove();
                 tag.style.display="initial";
                 htmlRender.buildRecipes(this.recipesOriginData);
+                MessageAlert.buildResultMessageWithResult(this.recipesOriginData);
+                i--;
+
+                if(i === 0 ){
+                    window.location.reload(false);
+                }
             })
-        })
+        }
     }
+
 
     pushUpButtonsFilter() {
         document.getElementById(this.typeTag + 'Hide').style.top = '0rem';

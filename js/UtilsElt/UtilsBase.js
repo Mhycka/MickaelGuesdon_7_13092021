@@ -32,7 +32,6 @@ export default class Utils {
     }
 
     static clearTagsList(typeTag) {
-        console.log('ok')
         return document.getElementById(typeTag + 'Example').innerHTML='';
     }
 
