@@ -3,7 +3,6 @@
 import Utils from '../UtilsElt/UtilsBase.js';
 import MessageAlert from '../Page/Message.js';
 import htmlRender from '../Page/HtmlRender.js';
-import tags from '../Page/TagSystem.js';
 
 export default class Search {
     static searchBuilder(){
@@ -39,15 +38,48 @@ export default class Search {
     })
         return {
             'recipesMatchedArray': recipesMatchedArray
-        };
-                   
+        };                  
+    }
+
+    static searchBuilderFilterInput(typeTag){
+        document.getElementById(typeTag + 'Input').addEventListener('keyup',(key) => {
+            let valueSearch = key.target.value;
+            let tagsList = document.querySelectorAll('#' + typeTag+ 'Example li');
+
+
+            if (Utils.isValid(valueSearch)) {
+                let result = this.searchFilterInput(valueSearch, typeTag);
+                console.log(result)
+                this.initFilterList(result, typeTag);
+                return;
+            } else{
+                tagsList.forEach(tags => {
+                    tags.style.display = 'initial'
+                })
+            }
+        })
+    }
+
+    static searchFilterInput(value, typeTag){
+        let recipesMatchedArray = [];
+        let tagsList = document.querySelectorAll('#' + typeTag+ 'Example li');
+
+       tagsList.forEach(tags => {
+        if (Utils.normalizeText(tags.textContent).includes(Utils.normalizeText(value))) {
+            recipesMatchedArray.push(tags.textContent);
+        }else{
+            tags.style.display = 'none'
+        }
+    })
+        return {
+            'recipesMatchedArray': recipesMatchedArray
+        };            
     }
 
     static builderSearchTag(typeTag, event){
         let tagData = [];
         let tags = document.querySelectorAll('#tagsBadges span');
-        
-
+    
         tags.forEach(tag =>{
             tagData.push( Utils.normalizeText(tag.textContent));
         })
@@ -162,5 +194,10 @@ export default class Search {
         htmlRender.buildRecipes(recipesMatchedTagArray);
         htmlRender.updateTagList(recipesMatchedTagArray, typeTag, event);
         MessageAlert.buildResultMessageWithResult(recipesMatchedTagArray);
+    }
+
+    static initFilterList(result){
+        let eltul = document.createElement('ul');
+        htmlRender.rendertaglist(eltul,result.recipesMatchedArray);
     }
 }

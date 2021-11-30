@@ -3,7 +3,6 @@ import Search from './SearchSystem/search.js'
 import htmlRender from './Page/HtmlRender.js'
 
 htmlRender.buildRecipes(recipesData);
-// htmlRender.rendertaglist();
 
 
 let ingredient = new tags('ingredient', recipesData);

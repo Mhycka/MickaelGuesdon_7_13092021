@@ -26,6 +26,7 @@ import Utils from '../UtilsElt/UtilsBase.js';
         }
     
         htmlRender.buildBlocKTags(this.tabAllTags, this.typeTag);
+        Search.searchBuilderFilterInput(this.typeTag);
 
         this.filterTags();
     }

@@ -1,8 +1,6 @@
 // 'use strict';
 
-import Search from '../SearchSystem/search.js';
 import Utils from '../UtilsElt/UtilsBase.js';
-import tags from './TagSystem.js';
 
 export default class htmlRender {
     // build the section containing the recipes to display
