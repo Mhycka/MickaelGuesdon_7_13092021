@@ -1,6 +1,8 @@
 
 import htmlRender from './HtmlRender.js';
 import Search from '../SearchSystem/search.js';
+import Utils from '../UtilsElt/UtilsBase.js';
+import MessageAlert from './Message.js';
 
  export default class tags{
 
@@ -26,6 +28,7 @@ import Search from '../SearchSystem/search.js';
         }
     
         htmlRender.buildBlocKTags(this.tabAllTags, this.typeTag);
+        Search.searchBuilderFilterInput(this.typeTag);
 
         this.filterTags();
     }
@@ -64,12 +67,16 @@ import Search from '../SearchSystem/search.js';
     filterTags(){
         let tags = document.querySelector("#" + this.typeTag + 'Example');
         let tagsList = tags.querySelectorAll("li");
+        let launchBtn = document.getElementById(this.typeTag + 'Elt').childNodes[0];
+        let openBtn = document.getElementById(this.typeTag + 'OpenFilter');
+        let hideBtn = document.getElementById (this.typeTag + 'Hide');
 
         for (const tag of tagsList) {
             tag.addEventListener('click', (event) => {
                 this.tabTagsSelected.push(event.target.textContent);
                 tag.style.display="none";
                 this.eventTags(event.target.textContent, tag, event.target);
+                Utils.hideButtonsOnClick(launchBtn, openBtn, hideBtn);
             })
         }
     }
@@ -84,9 +91,7 @@ import Search from '../SearchSystem/search.js';
     }
 
     renderTag(elt, tagText,tag) {
-        // console.log(elt,tag)
         elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tagText}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
-
         this.hideTag(tag);
     }
 
@@ -96,14 +101,20 @@ import Search from '../SearchSystem/search.js';
 
     hideTag(tag) {
         let closeIcon = document.querySelectorAll('#' + 'closeIcon');
-
+        let i = closeIcon.length;
+        
         for (const close of closeIcon) {
             close.addEventListener('click', () =>{
-                // console.log(close)
                 this.pushUpButtonsFilter();
                 close.remove();
                 tag.style.display="initial";
                 htmlRender.buildRecipes(this.recipesOriginData);
+                MessageAlert.buildResultMessageWithResult(this.recipesOriginData);
+                i--;
+
+                if(i === 0 ){
+                    window.location.reload(false);
+                }
             })
         }
     }

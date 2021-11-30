@@ -42,18 +42,47 @@ export default class Search {
         };       
     }
 
+    static searchBuilderFilterInput(typeTag){
+        document.getElementById(typeTag + 'Input').addEventListener('keyup',(key) => {
+            let valueSearch = key.target.value;
+            let tagsList = document.querySelectorAll('#' + typeTag+ 'Example li');
+
+
+            if (Utils.isValid(valueSearch)) {
+                let result = this.searchFilterInput(valueSearch, typeTag);
+                this.initFilterList(result, typeTag);
+                return;
+            } else{
+                tagsList.forEach(tags => {
+                    tags.style.display = 'initial'
+                })
+            }
+        })
+    }
+
+    static searchFilterInput(value, typeTag){
+        let recipesMatchedArray = [];
+        let tagsList = document.querySelectorAll('#' + typeTag+ 'Example li');
+
+       tagsList.forEach(tags => {
+        if (Utils.normalizeText(tags.textContent).includes(Utils.normalizeText(value))) {
+            recipesMatchedArray.push(tags.textContent);
+        }else{
+            tags.style.display = 'none'
+        }
+    })
+        return {
+            'recipesMatchedArray': recipesMatchedArray
+        };            
+    }
+
     static builderSearchTag(typeTag, event){
         let tagData = [];
         let tags = document.querySelectorAll('#tagsBadges span');
         
-        console.log('error')
-
         for(const tag of tags){
             tagData.push( Utils.normalizeText(tag.textContent));
         }
-
-        // console.log(tagData)
-
         this.searchFilterTag(tagData, typeTag, event);
 
         if (tagData.length === 0) {
@@ -65,8 +94,6 @@ export default class Search {
         let recipesMatchedTagArray = [];
         let recipesMatchedTagArray2 = [];
         let i = 0;
-
-        console.log('test ok')
 
         for(const tag of tags){
             let tagText = tag;
@@ -104,8 +131,6 @@ export default class Search {
                                 
                 i++;
                 
-                // htmlRender.updateTagList(recipesMatchedTagArray, typeTag);
-
             }else{
                 if(recipesMatchedTagArray.length != 0){
                     // console.log('JE suis ici')
@@ -156,9 +181,13 @@ export default class Search {
     }
 
     static initSearchTag(recipesMatchedTagArray, typeTag){
-        console.log(recipesMatchedTagArray)
         htmlRender.buildRecipes(recipesMatchedTagArray);
         htmlRender.updateTagList(recipesMatchedTagArray, typeTag, event);
         MessageAlert.buildResultMessageWithResult(recipesMatchedTagArray);
+    }
+
+    static initFilterList(result){
+        let eltul = document.createElement('ul');
+        htmlRender.rendertaglist(eltul,result.recipesMatchedArray);
     }
 }

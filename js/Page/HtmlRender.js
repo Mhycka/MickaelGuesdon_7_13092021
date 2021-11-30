@@ -102,16 +102,8 @@ export default class htmlRender {
         eltul.setAttribute('id', typeTag + 'Example');
         eltdiv2.appendChild(eltul, tabAllTags);
 
-        // for(let tag of tabAllTags){
-        //     let eltli=document.createElement('li');
-        //     eltul.appendChild(eltli);
-        //     eltli.innerHTML = tag;
-        // }
-
         this.rendertaglist(eltul, tabAllTags)
         this.afficher(typeTag);
-
-        // console.log(document.querySelectorAll('#'+ typeTag+ 'Example li'))
     }
 
      static rendertaglist(eltul, tabAllTags) {
@@ -122,8 +114,7 @@ export default class htmlRender {
         }
     }
     
-    static updateTagList(recipesMatched, typeTag, event){
-        // console.log(recipesMatched, event.target)
+    static updateTagList(recipesMatched, typeTag){
         Utils.clearTagsList(typeTag);
         let tabTagsList = []
 
@@ -155,17 +146,13 @@ export default class htmlRender {
             }
             tabTagsList = new Set(tabTagsList);
         }
-        
-        // console.log(tabTagsList); 
-        
+                
         for(let tag of tabTagsList){
             let eltul = document.getElementById(typeTag + 'Example');
             let eltli=document.createElement('li');
             eltul.appendChild(eltli);
             eltli.innerHTML = tag;
         }
-        this.afficher(typeTag);
-        console.log('ok')
     }
 
 // Display and event linked to the category filter button

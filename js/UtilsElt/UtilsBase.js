@@ -31,10 +31,6 @@ export default class Utils {
         return document.getElementById('mainContent').innerHTML = '';
     }
 
-    static clearFilters(elt) {
-        return elt.innerHTML = '';
-    }
-
     static clearTagsList(typeTag) {
         return document.getElementById(typeTag + 'Example').innerHTML='';
     }
