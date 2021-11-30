@@ -1,73 +1,118 @@
-// 'use strict';
-
-import sectionRecipesCard from './sectionRecipes.js';
-import MessageAlert from './Message.js';
+import htmlRender from './HtmlRender.js';
+import Search from '../SearchSystem/search.js';
 import Utils from '../UtilsElt/UtilsBase.js';
-import Ingredients from '../filters/Ingredients.js';
-import Appliances from '../filters/Appliances.js';
-import Ustensils from '../filters/Ustensils.js';
-import Logic from '../UtilsElt/Logic.js';
 
-export default class Tags {
-    static hiddenIngredientsFilter = document.querySelector('#ingredientsHide');
-    static hiddenAppliancesFilter = document.querySelector('#appliancesHide');
-    static hiddenUstensilesFilter = document.querySelector('#ustensilesHide');
+ export default class tags{
 
-    // displays a badge whose selected
-    static buildTags(elt, tag) {
-        this.pushDownButtonsFilter();
-        this.displayTag(elt);
-        this.fillTag(elt, tag);
-        return this;
+    constructor(typeTag , recipes){
+        this.typeTag = typeTag;
+        this.tabAllTags = [];
+        this.tabTagsSelected = [] ;
+        this.recipesOriginData = recipes;
+        this.init();
     }
 
-    static displayTag(elt) {
-        return elt.style.display = 'flex';
+ // Sort initialization for each category  
+    init(){
+        //Create an Array of element
+        if( this.typeTag == "ingredient"){
+            this.initIngredient()
+
+        }else if(this.typeTag == "ustensil"){
+            this.initUstensil()
+
+        }else if(this.typeTag == "appliance"){
+            this.initAppliance()
+        }
+    
+        htmlRender.buildBlocKTags(this.tabAllTags, this.typeTag);
+
+        this.filterTags();
     }
 
-    // fill in the selected tag
-    static fillTag(elt, tag) {
-        return elt.innerHTML = tag + ` <i class='far fa-times-circle'></i>`;
+    initIngredient(){
+        this.recipesOriginData.forEach(ings =>{
+            ings.ingredients.forEach( ing  =>{
+                let elt=ing.ingredient
+                elt=elt.toLowerCase()
+                this.tabAllTags.push(elt)
+            })
+        })
+        this.tabAllTags = new Set(this.tabAllTags); 
     }
 
-    // remove the tag 
-    static hideTag(elt) {
-        this.pushUpButtonsFilter();
-
-        return elt.style.display = 'none';
+    initUstensil(){
+        this.recipesOriginData.forEach(ings =>{
+            ings.ustensils.forEach( ing  =>{
+                let elt=ing
+                elt=elt.toLowerCase()
+                this.tabAllTags.push(elt)
+            })
+        })
+        this.tabAllTags = new Set(this.tabAllTags);
+    }
+    
+    initAppliance(){
+        this.recipesOriginData.forEach(elt =>{
+            let elt2=elt.appliance
+            elt2=elt2.toLowerCase()
+            this.tabAllTags.push(elt2)
+        })
+        this.tabAllTags = new Set(this.tabAllTags);
     }
 
-    static pushDownButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '0rem';
-        this.hiddenAppliancesFilter.style.top = '0rem';
-        this.hiddenUstensilesFilter.style.top = '0rem';
-    }
+    filterTags(){
+        let tags = document.querySelector("#" + this.typeTag + 'Example');
+        let tagsList = tags.querySelectorAll("li");
+        let launchBtn = document.getElementById(this.typeTag + 'Elt').childNodes[0];
+        let openBtn = document.getElementById(this.typeTag + 'OpenFilter');
+        let hideBtn = document.getElementById (this.typeTag + 'Hide');
 
-    static pushUpButtonsFilter() {
-        this.hiddenIngredientsFilter.style.top = '0rem';
-        this.hiddenAppliancesFilter.style.top = '0rem';
-        this.hiddenUstensilesFilter.style.top = '0rem';
-    }
-
-    static removeTagsOnClick(tag, event, eltBadge, recipes) {
-        tag.addEventListener('click', () => {
-            this.resetSection(event, eltBadge, recipes);
-            location.reload();
-
+        tagsList.forEach( tag =>{
+            tag.addEventListener('click', (event) => {
+                this.tabTagsSelected.push(event.target.textContent);
+                tag.style.display="none";
+                this.eventTags(event.target.textContent, tag, event.target);
+                Utils.hideButtonsOnClick(launchBtn, openBtn, hideBtn);
+            })
         })
     }
 
-    static resetSection(event, eltBadge, recipes) {
-        event.target.classList.remove('selected');
-        this.hideTag(eltBadge);
-        MessageAlert.buildResultMessageWithResult(recipes);
-        Utils.clearRecipesSection();
-        sectionRecipesCard.buildResult(recipes);
-        Utils.clearFilters(document.getElementById('ingredientsExample'));
-        Ingredients.fillIngredients(Logic.getAllIngredients(recipes));
-        Utils.clearFilters(document.getElementById('appliancesExample'));
-        Appliances.fillAppliances(Logic.getAllAppliances(recipes));
-        Utils.clearFilters(document.getElementById('ustensilesExample'));
-        Ustensils.fillUstensils(Logic.getAllUstensils(recipes));
+    eventTags(tagText, tag, event) {
+        let elementTag = document.getElementById('tagsBadges');
+        this.pushDownButtonsFilter();
+        this.renderTag(elementTag, tagText, tag);
+        Search.builderSearchTag(this.typeTag, event);
+
+        return this;
+    }
+
+    renderTag(elt, tagText,tag) {
+        // console.log(elt,tag)
+        elt.innerHTML += `<div class="${this.typeTag}Tag" id="closeIcon"><span>${tagText}</span><i class="far fa-times-circle ${this.typeTag}CloseIcon"></i></div>`;
+
+        this.hideTag(tag);
+    }
+
+    pushDownButtonsFilter() {
+        document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
+    }
+
+    hideTag(tag) {
+        let closeIcon = document.querySelectorAll('#' + 'closeIcon');
+
+        closeIcon.forEach( close => {
+            close.addEventListener('click', () =>{
+                // console.log(close)
+                this.pushUpButtonsFilter();
+                close.remove();
+                tag.style.display="initial";
+                htmlRender.buildRecipes(this.recipesOriginData);
+            })
+        })
+    }
+
+    pushUpButtonsFilter() {
+        document.getElementById(this.typeTag + 'Hide').style.top = '0rem';
     }
 }

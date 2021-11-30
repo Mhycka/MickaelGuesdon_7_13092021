@@ -35,6 +35,10 @@ export default class Utils {
         return elt.innerHTML = '';
     }
 
+    static clearTagsList(typeTag) {
+        return document.getElementById(typeTag + 'Example').innerHTML='';
+    }
+
     // Collect all recipes of categories
     static sortByTitle(array) {
         let arrayNoSort = [...new Set(array)];
@@ -45,7 +49,40 @@ export default class Utils {
                 return 1;
             }
         })
-
         return arraySort;
+    }
+
+    static hideButtonsOnClick(btn, open, hide) {
+        this.hideBtn(btn);
+        this.displayArrow(open);
+        this.hideHidden(hide);
+    }
+
+    static displayBtn(btn){
+        if(screen.width <= 576) {
+            btn.style.width = "11rem";
+        } else {
+            return btn.style.width = "35rem";
+        }
+    }
+
+    static hideBtn(btn) {
+        return btn.style.width = "11rem";
+    }
+
+    static displayArrow(open) {
+        return open.style.display = 'block';
+    }
+
+    static hideArrow(open){
+        return open.style.display = 'none';
+    }
+
+    static displayHidden(hide){
+        return hide.style.display = 'block';
+    }
+
+    static hideHidden(hide) {
+        return hide.style.display = 'none';
     }
 }

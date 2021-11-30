@@ -8,15 +8,16 @@
         border-radius: .25rem;
         color: #fff;
         cursor: default;
-        display: none;
         justify-content: space-between;
-        margin: 0.5rem 1rem .25rem 0;
-        padding: .5rem 1rem;
         width: fit-content;
     }
 
-    #ingredientTag {
+    .ingredientTag {
         background-color: $color-ingredients;
+        color: #fff;
+        padding: 0.6rem;
+        border-radius: 10px;
+        margin-right: 0.7rem;
 
         i{
             margin-left: 0.5rem;
@@ -27,8 +28,12 @@
         }
     }
 
-    #appliancesTag {
+    .applianceTag {
         background-color: $color-appliances;
+        color: #fff;
+        padding: 0.6rem;
+        border-radius: 10px;
+        margin-right: 0.7rem;
 
         i{
             margin-left: 0.5rem;
@@ -39,8 +44,12 @@
         }
     }
 
-    #ustensileTag{
+    .ustensilTag{
         background-color: $color-ustensiles;
+        color: #fff;
+        padding: 0.6rem;
+        border-radius: 10px;
+        margin-right: 0.7rem;
 
         i{
             margin-left: 0.5rem;
@@ -61,7 +70,7 @@
     width: 95%;
 }
 
-#ingredientsElt{
+#ingredientElt{
     margin-right: 2rem;
     position: relative;
 
@@ -86,7 +95,7 @@
         }
     }
 
-    #ingredientsHide {
+    #ingredientHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-ingredients;
@@ -96,16 +105,46 @@
         width: 35rem;
         z-index: 10;
 
-        #closeIngredientsFilter {
+        #ingredientCloseFilter {
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
             top: 2.8rem;
         }
+
+        #ingredientExample{
+            display: flex;
+            flex-wrap: wrap;
+            height: fit-content;
+            justify-content: space-evenly;
+            list-style: none;
+            padding: .5rem;
+
+            li{
+                font-size: 1.21rem;
+                overflow: hidden;
+                padding: .5rem 1rem;
+                text-align: start;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 9rem;
+
+                &:hover {
+                    background-color: $color-ingredientsHover;
+                    color: #fff;
+                }
+
+                .list-ustensil {
+                    .selected {
+                        background-color: #000;
+                    }
+                }
+            }
+        }
     }
 }
 
-#appliancesElt{
+#applianceElt{
     margin-right: 2rem;
     position: relative;
 
@@ -130,7 +169,7 @@
         }
     }
 
-    #appliancesHide {
+    #applianceHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-appliances;
@@ -140,16 +179,46 @@
         width: 35rem;
         z-index: 10;
 
-        #closeAppliancesFilter{
+        #applianceCloseFilter{
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
             top: 2.8rem;
         }
+
+        #applianceExample{
+            display: flex;
+            flex-wrap: wrap;
+            height: fit-content;
+            justify-content: space-evenly;
+            list-style: none;
+            padding: .5rem;
+
+            li{
+                font-size: 1.21rem;
+                overflow: hidden;
+                padding: .5rem 1rem;
+                text-align: start;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 9rem;
+
+                &:hover {
+                    background-color: $color-appliancesHover;
+                    color: #fff;
+                }
+                
+                .list-ustensiles {
+                    .selected {
+                        background-color: #000;
+                    }
+                }
+            }
+        }
     }
 }
 
-#ustensilesElt{
+#ustensilElt{
     margin-right: 2rem;
     position: relative;
 
@@ -174,7 +243,7 @@
         }
     }
 
-    #ustensilesHide {
+    #ustensilHide {
         border-radius: 5px;
         color: #ffff;
         background-color: $color-ustensiles;
@@ -184,106 +253,46 @@
         width: 35rem;
         z-index: 10;
 
-        #closeUstensilesFilter {
+        #ustensilCloseFilter {
             font-size: 1.125rem;
             left: 32rem;
             position: absolute;
             top: 2.8rem;
         }
-    }
-}
 
-.listUlIng{
-    display: flex;
-    flex-wrap: wrap;
-    height: fit-content;
-    justify-content: space-evenly;
-    list-style: none;
-    padding: .5rem;
+        #ustensilExample{
+            display: flex;
+            flex-wrap: wrap;
+            height: fit-content;
+            justify-content: space-evenly;
+            list-style: none;
+            padding: .5rem;
 
-    li{
-        font-size: 1.21rem;
-        overflow: hidden;
-        padding: .5rem 1rem;
-        text-align: start;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 9rem;
+            li{
+                font-size: 1.21rem;
+                overflow: hidden;
+                padding: .5rem 1rem;
+                text-align: start;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 9rem;
 
-        &:hover {
-            background-color: $color-ingredientsHover;
-            color: #fff;
-        }
+                &:hover {
+                    background-color: $color-ustensilesHover;
+                    color: #fff;
+                }
 
-        .list-ustensiles {
-            .selected {
-                background-color: #000;
+                .list-ustensil {
+                    .selected {
+                        background-color: #000;
+                    }
+                }
             }
         }
     }
 }
 
-.listUlApp{
-    display: flex;
-    flex-wrap: wrap;
-    height: fit-content;
-    justify-content: space-evenly;
-    list-style: none;
-    padding: .5rem;
-
-    li{
-        font-size: 1.21rem;
-        overflow: hidden;
-        padding: .5rem 1rem;
-        text-align: start;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 9rem;
-
-        &:hover {
-            background-color: $color-appliancesHover;
-            color: #fff;
-        }
-        
-        .list-ustensiles {
-            .selected {
-                background-color: #000;
-            }
-        }
-    }
-}
-
-.listUlUst{
-    display: flex;
-    flex-wrap: wrap;
-    height: fit-content;
-    justify-content: space-evenly;
-    list-style: none;
-    padding: .5rem;
-
-    li{
-        font-size: 1.21rem;
-        overflow: hidden;
-        padding: .5rem 1rem;
-        text-align: start;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 9rem;
-
-        &:hover {
-            background-color: $color-ustensilesHover;
-            color: #fff;
-        }
-
-        .list-ustensiles {
-            .selected {
-                background-color: #000;
-            }
-        }
-    }
-}
-
-#inputIngredients {
+#ingredientInput {
     border: none;
     border-radius: 5px;
     background-color: $color-ingredients;
@@ -302,7 +311,7 @@
     }
 }
 
-#inputAppliances {
+#applianceInput {
     border: none;
     border-radius: 5px;
     color: #ffff;
@@ -321,7 +330,7 @@
     }
 } 
 
-#inputUstensiles {
+#ustensilInput {
     border: none;
     border-radius: 5px;
     color: #ffff;

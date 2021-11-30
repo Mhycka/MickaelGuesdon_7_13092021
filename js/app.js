@@ -1,25 +1,13 @@
+import tags from './Page/TagSystem.js';
+import Search from './SearchSystem/search.js'
+import htmlRender from './Page/HtmlRender.js'
 
-import builder from './Page/builder.js';
-import MessageAlert from './Page/Message.js';
-import Search from './SearchSystem/search.js';
-import Utils from './UtilsElt/UtilsBase.js';
+htmlRender.buildRecipes(recipesData);
+// htmlRender.rendertaglist();
 
-// Build by default
-builder.init();
 
-// Build with search
-document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
-    let valueSearch = key.target.value;
-    if (Utils.isValid(valueSearch)) {
-        let result = Search.searchMainInput(valueSearch);
-        if (result.recipesMatchedArray.length === 0) {
-            return MessageAlert.buildResultMessageWithNoResult();
-        }
-        Utils.clearRecipesSection();
-        builder.initSearch(result);
-        return;
-    }
-    // Reset Build system
-    Utils.clearRecipesSection();
-    builder.init();
-});
+let ingredient = new tags('ingredient', recipesData);
+let ustensil = new tags('ustensil', recipesData);
+let appliance = new tags('appliance', recipesData);
+
+Search.searchBuilder();
