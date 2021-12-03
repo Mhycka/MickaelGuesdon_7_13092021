@@ -5,6 +5,7 @@ import MessageAlert from '../Page/Message.js';
 import htmlRender from '../Page/HtmlRender.js';
 
 export default class Search {
+
     static searchBuilder(){
         document.getElementById('searchBarInput').addEventListener('keyup', (key) => {
             let valueSearch = key.target.value;
